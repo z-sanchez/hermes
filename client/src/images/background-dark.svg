@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <radialGradient id="radial-gradient" cx="0.423" cy="0.445" r="0.529" gradientTransform="matrix(0.591, -0.807, 0.529, 0.387, -0.04, 0.564)" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#a96fdb"/>
+      <stop offset="1" stop-color="#9430eb"/>
+    </radialGradient>
+    <clipPath id="clip-Web_1920_6">
+      <rect width="1920" height="1080"/>
+    </clipPath>
+  </defs>
+  <g id="Web_1920_6" data-name="Web 1920 – 6" clip-path="url(#clip-Web_1920_6)">
+    <rect width="1920" height="1080" fill="#252c32"/>
+    <rect id="Rectangle_3" data-name="Rectangle 3" width="1224" height="1125" rx="562.5" transform="matrix(0.966, 0.259, -0.259, 0.966, -126.592, -447.139)" fill="url(#radial-gradient)"/>
+    <path id="Path_1" data-name="Path 1" d="M1232.563,15.077a18,18,0,0,1,26.875,0L2465.283,1368.024A18,18,0,0,1,2451.845,1398H40.155a18,18,0,0,1-13.437-29.977Z" transform="translate(-946 205)" fill="#e3e3e3"/>
+  </g>
+</svg>

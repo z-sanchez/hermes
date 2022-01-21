@@ -1,0 +1,143 @@
+@font-face {
+  font-family: arista;
+  src: url("../fonts/arista.ttf") format("truetype");
+}
+@font-face {
+  font-family: osRegular;
+  src: url("../fonts/openSans-regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: osSemibold;
+  src: url("../fonts/openSans-semibold.ttf") format("truetype");
+}
+html {
+  overflow: hidden;
+  height: 100vh;
+  width: 100vw;
+  padding: 0;
+  margin: 0;
+  background-image: url("../images/background-dark.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  line-height: 1.6;
+  font-family: "Nunito", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+  line-height: 1.2;
+}
+
+#logo {
+  padding: 0;
+  margin: 0;
+  font-family: arista, "Nunito", sans-serif;
+  font-size: 10rem;
+  color: #E3E3E3;
+}
+
+#loginForm {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  padding: 0;
+  margin: 0;
+  align-items: flex-start;
+  justify-content: space-between;
+  width: 40vw;
+  height: 50vh;
+  padding: 0.5vh 4vw;
+  border-radius: 2vh;
+  background-color: #33373E;
+  box-shadow: 0.3rem 1rem 1.5rem #25272d;
+}
+
+#loginForm__title {
+  padding: 0;
+  margin: 0;
+  font-family: osSemibold, "Nunito", sans-serif;
+  color: #E3E3E3;
+  font-size: 3rem;
+}
+
+#loginForm__signUp {
+  padding: 0;
+  margin: 0;
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #E3E3E3;
+  font-size: 1rem;
+}
+
+a {
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #9430EB;
+}
+
+.loginForm__field {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  width: 90%;
+  align-items: flex-start;
+}
+
+.field__text {
+  padding: 0;
+  margin: 0;
+  font-family: osSemibold, "Nunito", sans-serif;
+  color: #E3E3E3;
+  font-size: 2rem;
+}
+
+.field__enterInfo {
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #858585;
+  font-size: 0.8rem;
+  padding: 1vh 0.5vw;
+  width: 100%;
+  background-color: #33373E;
+  border: 0.1vw solid #E3E3E3;
+  border-radius: 5px;
+}
+
+#loginForm__rememberMe {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+}
+
+#rememberMe__checkbox {
+  background-color: #33373E;
+  border: 0.1vw solid #E3E3E3;
+  border-radius: 5px;
+}
+
+#rememberMe__text {
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #858585;
+}
+
+#loginForm__loginButton {
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #E3E3E3;
+  font-size: 1.5rem;
+  width: 48vw;
+  height: 9vh;
+  align-self: center;
+  background-color: #9430EB;
+  border-style: none;
+  border-radius: 1vh;
+}
+
+/*# sourceMappingURL=App.css.map */
