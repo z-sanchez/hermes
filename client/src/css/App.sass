@@ -58,11 +58,11 @@ h4,
 h5
   line-height: 1.2
 
-body
+.body
   @include centerAligned()
-  margin-top: 5vh
+  margin-top: 7vh
   position: relative
-  left: 12vw
+  left: 22vw
 
 #logo
   @include spaceKiller
@@ -75,7 +75,7 @@ body
   @include centerAligned($flow: column)
   @include spaceKiller
   align-items: flex-start
-  justify-content: flex-end
+  justify-content: space-between
   width: 18vw
   height: 52vh
   padding: 1vh 2.5vw 0 2.5vw
@@ -128,25 +128,13 @@ a
 .field__enterInfo:focus
   color: $white-theme
 
-#loginForm__rememberMe
-  @include centerAligned($flow: row)
-
-#rememberMe__checkbox
-  background-color: $background-black-light
-  border: .1vw solid $white-theme
-  border-radius: 5px
-
-#rememberMe__text
-  @include fontStyle($color: $darker-text, $font: osRegular)
-
-
 
 #loginForm__loginButton
+  @include spaceKiller
   @include fontStyle($color: $white-theme, $font: osRegular)
   font-size: 1.5rem
-  width: 114.5%
+  width: 20.6vw
   height: 18%
-  margin-top: 2.5vh
   align-self: center
   justify-self: flex-end
   background: radial-gradient($purple-theme, #b057ff 170%)
@@ -166,7 +154,7 @@ a
   #loginForm__loginButton
     width: 418px
 
-  body
+  .body
     left: 0
 
 
@@ -182,8 +170,9 @@ a
   .loginForm__field
     margin-bottom: 16.36px
 
-  #loginForm__loginButton
-    margin-top: 20px
+
+
+
 
 
 
@@ -198,7 +187,7 @@ a
 
 /* Portrait */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px)
-  body
+  .body
     left: 0
 
 
