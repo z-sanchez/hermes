@@ -33,6 +33,17 @@ h5 {
   line-height: 1.2;
 }
 
+body {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  margin-top: 5vh;
+  position: relative;
+  left: 12vw;
+}
+
 #logo {
   padding: 0;
   margin: 0;
@@ -50,10 +61,10 @@ h5 {
   padding: 0;
   margin: 0;
   align-items: flex-start;
-  justify-content: space-between;
-  width: 40vw;
-  height: 50vh;
-  padding: 0.5vh 4vw;
+  justify-content: flex-end;
+  width: 18vw;
+  height: 52vh;
+  padding: 1vh 2.5vw 0 2.5vw;
   border-radius: 2vh;
   background-color: #33373E;
   box-shadow: 0.3rem 1rem 1.5rem #25272d;
@@ -73,6 +84,7 @@ h5 {
   font-family: osRegular, "Nunito", sans-serif;
   color: #E3E3E3;
   font-size: 1rem;
+  margin-bottom: 2vh;
 }
 
 a {
@@ -88,6 +100,7 @@ a {
   align-content: center;
   width: 90%;
   align-items: flex-start;
+  margin-bottom: 2vh;
 }
 
 .field__text {
@@ -107,6 +120,10 @@ a {
   background-color: #33373E;
   border: 0.1vw solid #E3E3E3;
   border-radius: 5px;
+}
+
+.field__enterInfo:focus {
+  color: #E3E3E3;
 }
 
 #loginForm__rememberMe {
@@ -132,12 +149,84 @@ a {
   font-family: osRegular, "Nunito", sans-serif;
   color: #E3E3E3;
   font-size: 1.5rem;
-  width: 48vw;
-  height: 9vh;
+  width: 114.5%;
+  height: 18%;
+  margin-top: 2.5vh;
   align-self: center;
-  background-color: #9430EB;
+  justify-self: flex-end;
+  background: radial-gradient(#9430EB, #b057ff 170%);
   border-style: none;
-  border-radius: 1vh;
+  border-radius: 0 0 1vh 1vh;
+}
+
+#loginForm__loginButton:hover {
+  background: #9430EB;
+}
+
+@media screen and (max-width: 1600px) {
+  #loginForm {
+    width: 368px;
+    padding: 10px 25px 0 25px;
+  }
+
+  #loginForm__loginButton {
+    width: 418px;
+  }
+
+  body {
+    left: 0;
+  }
+}
+@media screen and (max-height: 1000px) {
+  #loginForm {
+    height: 468.5px;
+    padding: 10px 25px 0 25px;
+  }
+
+  #loginForm__signUp {
+    margin-bottom: 16.36px;
+  }
+
+  .loginForm__field {
+    margin-bottom: 16.36px;
+  }
+
+  #loginForm__loginButton {
+    margin-top: 20px;
+  }
+}
+/* ----------- iPhone X ----------- */
+/* Portrait and Landscape */
+/* Portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
+  body {
+    left: 0;
+  }
+
+  #logo {
+    font-size: 5.5rem;
+    margin-bottom: 10%;
+    color: #E3E3E3;
+  }
+
+  #loginForm {
+    height: 30%;
+    width: 300px;
+    padding: 10px 25px 0 25px;
+  }
+
+  #loginForm__signUp {
+    margin-bottom: 16.36px;
+  }
+
+  .loginForm__field {
+    margin-bottom: 16.36px;
+  }
+
+  #loginForm__loginButton {
+    width: 350px;
+    height: 60px;
+  }
 }
 
 /*# sourceMappingURL=App.css.map */

@@ -3,7 +3,7 @@ import React from "react";
 function LoginForm() {
     return (
         <body>
-        <h1 id="logo">Hermes</h1>
+        <h1 id="logo">HERMES</h1>
         <form id="loginForm">
             <h1 id="loginForm__title">Login</h1>
             <p id="loginForm__signUp">
@@ -13,13 +13,13 @@ function LoginForm() {
                 <h1 className="field__text">Email Address</h1>
                 <input
                     type="text"
-                    value="you@example.com"
+                    placeholder={"you@example.com"}
                     className="field__enterInfo"
                 />
             </div>
             <div className="loginForm__field">
                 <h1 className="field__text">Password</h1>
-                <input type="text" value="Enter 6 characters or more" className="field__enterInfo"/>
+                <input type="text" placeholder={"Enter 6 characters or more"} className="field__enterInfo"/>
             </div>
             <div id="loginForm__rememberMe">
                 <input id="rememberMe__checkbox" type="checkbox"/>

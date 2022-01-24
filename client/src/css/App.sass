@@ -58,6 +58,12 @@ h4,
 h5
   line-height: 1.2
 
+body
+  @include centerAligned()
+  margin-top: 5vh
+  position: relative
+  left: 12vw
+
 #logo
   @include spaceKiller
   font-family: $logo-text
@@ -69,13 +75,15 @@ h5
   @include centerAligned($flow: column)
   @include spaceKiller
   align-items: flex-start
-  justify-content: space-between
-  width: 40vw
-  height: 50vh
-  padding: .5vh 4vw
+  justify-content: flex-end
+  width: 18vw
+  height: 52vh
+  padding: 1vh 2.5vw 0 2.5vw
   border-radius: 2vh
   background-color: $background-black-light
   box-shadow: .3rem 1rem 1.5rem #25272d
+
+
 
 
 #loginForm__title
@@ -88,6 +96,9 @@ h5
   @include spaceKiller
   @include fontStyle($color: $white-theme, $font: osRegular)
   font-size: 1rem
+  margin-bottom: 2vh
+
+
 
 a
   @include fontStyle($color: $purple-theme, $font: osRegular)
@@ -97,6 +108,8 @@ a
   @include centerAligned($flow: column)
   width: 90%
   align-items: flex-start
+  margin-bottom: 2vh
+
 
 .field__text
   @include spaceKiller
@@ -112,6 +125,8 @@ a
   border: .1vw solid $white-theme
   border-radius: 5px
 
+.field__enterInfo:focus
+  color: $white-theme
 
 #loginForm__rememberMe
   @include centerAligned($flow: row)
@@ -124,14 +139,99 @@ a
 #rememberMe__text
   @include fontStyle($color: $darker-text, $font: osRegular)
 
+
+
 #loginForm__loginButton
   @include fontStyle($color: $white-theme, $font: osRegular)
   font-size: 1.5rem
-  width: 48vw
-  height: 9vh
+  width: 114.5%
+  height: 18%
+  margin-top: 2.5vh
   align-self: center
-  background-color: $purple-theme
+  justify-self: flex-end
+  background: radial-gradient($purple-theme, #b057ff 170%)
   border-style: none
-  border-radius: 1vh
+  border-radius: 0 0 1vh 1vh
+
+#loginForm__loginButton:hover
+  background: $purple-theme
 
 
+
+@media screen and (max-width: 1600px)
+  #loginForm
+    width: 368px
+    padding: 10px 25px 0 25px
+
+  #loginForm__loginButton
+    width: 418px
+
+  body
+    left: 0
+
+
+
+@media screen and (max-height: 1000px)
+  #loginForm
+    height: 468.5px
+    padding: 10px 25px 0 25px
+
+  #loginForm__signUp
+    margin-bottom: 16.36px
+
+  .loginForm__field
+    margin-bottom: 16.36px
+
+  #loginForm__loginButton
+    margin-top: 20px
+
+
+
+
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3)
+
+
+
+/* Portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px)
+  body
+    left: 0
+
+
+  #logo
+    font-size: 5.5rem
+    margin-bottom: 10%
+    color: $white-theme
+
+  #loginForm
+    height: 30%
+    width: 300px
+    padding: 10px 25px 0 25px
+
+  #loginForm__signUp
+    margin-bottom: 16.36px
+
+  .loginForm__field
+    margin-bottom: 16.36px
+
+  #loginForm__loginButton
+    width: 350px
+    height: 60px
+
+
+
+
+
+
+///* Landscape */
+//@media only screen
+//  and (min-device-width: 375px)
+//  and (max-device-width: 812px)
+//  and (-webkit-min-device-pixel-ratio: 3)
+//  and (orientation: landscape) {
+//
+//}
