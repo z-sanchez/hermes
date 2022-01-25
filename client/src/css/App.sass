@@ -39,10 +39,6 @@ $logo-text: arista, "Nunito", sans-serif
 
 html
   overflow: hidden
-  height: 100vh
-  width: 100vw
-  padding: 0
-  margin: 0
   line-height: 1.6
   font-family: "Nunito", sans-serif
   -webkit-font-smoothing: antialiased
@@ -58,6 +54,7 @@ h5
 body
   @include spaceKiller
 
+
 #root
   width: 100vw
   height: 100vh
@@ -65,7 +62,8 @@ body
   background-size: cover
   background-repeat: no-repeat
 
-.body
+
+.wrapper
   @include centerAligned()
   position: relative
   height: 80vh
@@ -143,9 +141,22 @@ a
 
 
 
+
+
+
+
+
 @media screen and (max-width: 1600px)
+  #logo
+    position: relative
+    bottom: 15vh
+
+
   #loginForm
+    position: relative
+    bottom: 10vh
     width: 368px
+    height: 200px
     padding: 10px 25px 0 25px
 
   #loginForm__loginButton

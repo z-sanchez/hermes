@@ -54,7 +54,6 @@ function LoginForm() {
 
   const signOut = async () => {
     try {
-      console.log("yeet");
       await firebase.auth().signOut();
     } catch (error) {
       console.log(error.message);
@@ -63,7 +62,7 @@ function LoginForm() {
 
   const getLogin = () => {
     return (
-      <div className="body">
+      <div className="wrapper">
         <h1 id="logo">HERMES</h1>
         <form id="loginForm">
           <h1 id="loginForm__title">Login</h1>

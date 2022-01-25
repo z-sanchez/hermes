@@ -12,10 +12,6 @@
 }
 html {
   overflow: hidden;
-  height: 100vh;
-  width: 100vw;
-  padding: 0;
-  margin: 0;
   line-height: 1.6;
   font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -43,7 +39,7 @@ body {
   background-repeat: no-repeat;
 }
 
-.body {
+.wrapper {
   display: flex;
   flex-flow: column;
   align-items: center;
@@ -139,8 +135,16 @@ a {
 }
 
 @media screen and (max-width: 1600px) {
+  #logo {
+    position: relative;
+    bottom: 15vh;
+  }
+
   #loginForm {
+    position: relative;
+    bottom: 10vh;
     width: 368px;
+    height: 200px;
     padding: 10px 25px 0 25px;
   }
 

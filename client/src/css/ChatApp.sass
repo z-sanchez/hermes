@@ -1,0 +1,135 @@
+$background-black-light: #3C434B
+$background-black: #282D34
+$purple-theme: #9430EB /* for text */
+$white-theme: #E3E3E3 /* for text */
+$darker-text: #858585
+$purple-theme-faded: #583E79
+$logo-text: arista, "Nunito", sans-serif
+
+
+@font-face
+  font-family: arista
+  src: url('../fonts/arista.ttf') format('truetype')
+
+@font-face
+  font-family: osRegular
+  src: url('../fonts/openSans-regular.ttf') format('truetype')
+
+@font-face
+  font-family: osSemibold
+  src: url('../fonts/openSans-semibold.ttf') format('truetype')
+
+
+@mixin fontStyle($color: $logo-text, $font: arista)
+  font-family: $font, "Nunito", sans-serif
+  color: $color
+
+@mixin spaceKiller
+  padding: 0
+  margin: 0
+
+@mixin centerAligned($flow: column)
+  display: flex
+  flex-flow: $flow
+  align-items: center
+  justify-content: center
+  align-content: center
+
+
+
+
+
+#appGrid
+  overflow: hidden
+  display: grid
+  width: 100%
+  height: 100vh
+  grid-template-columns: 35% auto
+  grid-template-rows: 10% auto
+  row-gap: 1.8vh
+  background-color: $background-black
+
+
+#header
+  @include centerAligned(row)
+  justify-content: space-between
+  background-color: $purple-theme
+  border-radius: 0 0 2vh 2vh
+  grid-row-start: 1
+  grid-row-end: 2
+  grid-column-start: 1
+  grid-column-end: 3
+
+  h1
+    @include fontStyle($white-theme, arista)
+    @include spaceKiller
+    font-size: 8vh
+    margin-left: 1vw
+
+  p
+    @include fontStyle($white-theme, osRegular)
+    @include spaceKiller
+    font-size: 4vh
+    margin-right: 1vw
+
+
+
+
+
+
+.buttons
+  background-color: #583E79
+  border: none
+  border-radius: 2.5vh
+  padding: .8vh 1vw
+  width: 6.5vw
+  font-size: 2.5vh
+  text-align: center
+
+#contacts
+  @include centerAligned(column)
+  justify-content: flex-start
+  width: 90%
+  height: 100%
+  justify-self: center
+  grid-row-start: 2
+  grid-row-end: 4
+  grid-column-start: 1
+  grid-column-end: 2
+
+  #buttonBar
+    @include centerAligned(row)
+    justify-content: space-between
+    height: 10%
+    width: 100%
+
+    #searchBar
+      @include fontStyle($white-theme, osRegular)
+      width: 60%
+      padding: .8vh 1vw
+      border: none
+      border-radius: 2.5vh
+      font-size: 2.5vh
+      background-color: $background-black-light
+      color: $darker-text
+
+    #addButton
+      @include fontStyle($white-theme, osRegular)
+
+
+
+  #contactsList
+    background-color: $background-black-light
+    width: 100%
+    height: 90%
+    border-radius: 2vh 2vh 0 0
+
+
+
+
+
+#chat
+  grid-row-start: 2
+  grid-row-end: 4
+  grid-column-start: 2
+  grid-column-end: 3

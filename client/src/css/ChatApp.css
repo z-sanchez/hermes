@@ -1,0 +1,119 @@
+@font-face {
+  font-family: arista;
+  src: url("../fonts/arista.ttf") format("truetype");
+}
+@font-face {
+  font-family: osRegular;
+  src: url("../fonts/openSans-regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: osSemibold;
+  src: url("../fonts/openSans-semibold.ttf") format("truetype");
+}
+#appGrid {
+  overflow: hidden;
+  display: grid;
+  width: 100%;
+  height: 100vh;
+  grid-template-columns: 35% auto;
+  grid-template-rows: 10% auto;
+  row-gap: 1.8vh;
+  background-color: #282D34;
+}
+
+#header {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-content: space-between;
+  background-color: #9430EB;
+  border-radius: 0 0 2vh 2vh;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  grid-column-start: 1;
+  grid-column-end: 3;
+}
+#header h1 {
+  font-family: arista, "Nunito", sans-serif;
+  color: #E3E3E3;
+  padding: 0;
+  margin: 0;
+  font-size: 8vh;
+  margin-left: 1vw;
+}
+#header p {
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #E3E3E3;
+  padding: 0;
+  margin: 0;
+  font-size: 4vh;
+  margin-right: 1vw;
+}
+
+.buttons {
+  background-color: #583E79;
+  border: none;
+  border-radius: 2.5vh;
+  padding: 0.8vh 1vw;
+  width: 6.5vw;
+  font-size: 2.5vh;
+  text-align: center;
+}
+
+#contacts {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-content: flex-start;
+  width: 90%;
+  height: 100%;
+  justify-self: center;
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column-start: 1;
+  grid-column-end: 2;
+}
+#contacts #buttonBar {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-content: space-between;
+  height: 10%;
+  width: 100%;
+}
+#contacts #buttonBar #searchBar {
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #E3E3E3;
+  width: 60%;
+  padding: 0.8vh 1vw;
+  border: none;
+  border-radius: 2.5vh;
+  font-size: 2.5vh;
+  background-color: #3C434B;
+  color: #858585;
+}
+#contacts #buttonBar #addButton {
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #E3E3E3;
+}
+#contacts #contactsList {
+  background-color: #3C434B;
+  width: 100%;
+  height: 90%;
+  border-radius: 2vh 2vh 0 0;
+}
+
+#chat {
+  grid-row-start: 2;
+  grid-row-end: 4;
+  grid-column-start: 2;
+  grid-column-end: 3;
+}
+
+/*# sourceMappingURL=ChatApp.css.map */
