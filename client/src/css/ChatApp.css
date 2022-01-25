@@ -17,7 +17,7 @@
   height: 100vh;
   grid-template-columns: 35% auto;
   grid-template-rows: 10% auto;
-  row-gap: 1.8vh;
+  row-gap: 2%;
   background-color: #282D34;
 }
 
@@ -40,25 +40,25 @@
   color: #E3E3E3;
   padding: 0;
   margin: 0;
-  font-size: 8vh;
-  margin-left: 1vw;
+  font-size: 350%;
+  margin-left: 2%;
 }
 #header p {
   font-family: osRegular, "Nunito", sans-serif;
   color: #E3E3E3;
   padding: 0;
   margin: 0;
-  font-size: 4vh;
-  margin-right: 1vw;
+  font-size: 200%;
+  margin-right: 2%;
 }
 
 .buttons {
   background-color: #583E79;
   border: none;
-  border-radius: 2.5vh;
+  border-radius: 18px;
   padding: 0.8vh 1vw;
   width: 6.5vw;
-  font-size: 2.5vh;
+  font-size: 130%;
   text-align: center;
 }
 
@@ -94,7 +94,7 @@
   padding: 0.8vh 1vw;
   border: none;
   border-radius: 2.5vh;
-  font-size: 2.5vh;
+  font-size: 130%;
   background-color: #3C434B;
   color: #858585;
 }
@@ -102,18 +102,154 @@
   font-family: osRegular, "Nunito", sans-serif;
   color: #E3E3E3;
 }
+#contacts #buttonBar #addButton:hover {
+  background-color: #9430EB;
+}
 #contacts #contactsList {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
   background-color: #3C434B;
+  color: #E3E3E3;
   width: 100%;
   height: 90%;
   border-radius: 2vh 2vh 0 0;
 }
 
 #chat {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-content: flex-start;
+  width: 90%;
+  height: 100%;
+  justify-self: center;
   grid-row-start: 2;
   grid-row-end: 4;
   grid-column-start: 2;
   grid-column-end: 3;
+}
+#chat #receiver {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  width: 100%;
+  height: 10%;
+}
+#chat #receiver p {
+  padding: 0;
+  margin: 0;
+  font-family: osSemibold, "Nunito", sans-serif;
+  color: #E3E3E3;
+  background-color: #583E79;
+  border: none;
+  border-radius: 18px;
+  padding: 0.8vh 10%;
+  font-size: 130%;
+  text-align: center;
+  color: #E3E3E3;
+}
+#chat #chatWindow {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 100%;
+  height: 75%;
+}
+#chat #chatWindow .receivedMessage {
+  font-family: osSemibold, "Nunito", sans-serif;
+  color: #282D34;
+  background-color: #E3E3E3;
+  padding: 2vh 2vw;
+  border-radius: 2.8vh;
+  max-width: 45%;
+  margin-bottom: 0.2vh;
+}
+#chat #chatWindow .lastReceivedMessage {
+  font-family: osSemibold, "Nunito", sans-serif;
+  color: #282D34;
+  background-color: #E3E3E3;
+  padding: 2vh 2vw;
+  border-radius: 2.8vh;
+  max-width: 45%;
+  margin-bottom: 0.2vh;
+  border-radius: 0 2.8vh 2.8vh 2.8vh;
+}
+#chat #chatWindow .sentMessage {
+  font-family: osSemibold, "Nunito", sans-serif;
+  color: #E3E3E3;
+  background-color: #9430EB;
+  align-self: flex-end;
+  padding: 2vh 2vw;
+  border-radius: 2.8vh 0 2.8vh 2.8vh;
+  max-width: 45%;
+}
+#chat #messageBar {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-content: space-between;
+  height: 12%;
+  width: 100%;
+}
+#chat #messageBar #message {
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #E3E3E3;
+  width: 75%;
+  padding: 0.8vh 1vw;
+  border: none;
+  border-radius: 2.5vh;
+  font-size: 2.5vh;
+  background-color: #3C434B;
+  color: #E3E3E3;
+}
+#chat #messageBar #message:focus-visible {
+  outline: none;
+}
+#chat #messageBar #sendMessage {
+  color: #E3E3E3;
+  background-color: #9430EB;
+  font-size: 130%;
+  min-width: 63px;
+}
+
+@media screen and (max-height: 700px) {
+  #appGrid {
+    grid-template-rows: 70px auto;
+    row-gap: 1.8vh;
+  }
+
+  #contacts, #chat {
+    height: 616.42px;
+  }
+}
+@media screen and (max-width: 1400px) {
+  #appGrid {
+    grid-template-columns: auto;
+  }
+
+  #chat {
+    grid-row-start: 2;
+    grid-row-end: 4;
+    grid-column-start: 1;
+    grid-column-end: 3;
+  }
+
+  #contacts {
+    display: none;
+  }
 }
 
 /*# sourceMappingURL=ChatApp.css.map */

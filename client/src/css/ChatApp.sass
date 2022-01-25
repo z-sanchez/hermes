@@ -35,6 +35,23 @@ $logo-text: arista, "Nunito", sans-serif
   justify-content: center
   align-content: center
 
+@mixin receivedMessage
+  @include fontStyle($background-black, osSemibold)
+  background-color: $white-theme
+  padding: 2vh 2vw
+  border-radius: 2.8vh
+  max-width: 45%
+  margin-bottom: .2vh
+
+@mixin sentMessage
+  @include fontStyle($white-theme, osSemibold)
+  background-color: $purple-theme
+  align-self: flex-end
+  padding: 2vh 2vw
+  border-radius: 2.8vh 0 2.8vh 2.8vh
+  max-width: 45%
+
+
 
 
 
@@ -46,7 +63,7 @@ $logo-text: arista, "Nunito", sans-serif
   height: 100vh
   grid-template-columns: 35% auto
   grid-template-rows: 10% auto
-  row-gap: 1.8vh
+  row-gap: 2%
   background-color: $background-black
 
 
@@ -63,14 +80,14 @@ $logo-text: arista, "Nunito", sans-serif
   h1
     @include fontStyle($white-theme, arista)
     @include spaceKiller
-    font-size: 8vh
-    margin-left: 1vw
+    font-size: 350%
+    margin-left: 2%
 
   p
     @include fontStyle($white-theme, osRegular)
     @include spaceKiller
-    font-size: 4vh
-    margin-right: 1vw
+    font-size: 200%
+    margin-right: 2%
 
 
 
@@ -80,10 +97,10 @@ $logo-text: arista, "Nunito", sans-serif
 .buttons
   background-color: #583E79
   border: none
-  border-radius: 2.5vh
+  border-radius: 18px
   padding: .8vh 1vw
   width: 6.5vw
-  font-size: 2.5vh
+  font-size: 130%
   text-align: center
 
 #contacts
@@ -109,17 +126,22 @@ $logo-text: arista, "Nunito", sans-serif
       padding: .8vh 1vw
       border: none
       border-radius: 2.5vh
-      font-size: 2.5vh
+      font-size: 130%
       background-color: $background-black-light
       color: $darker-text
 
     #addButton
       @include fontStyle($white-theme, osRegular)
 
+    #addButton:hover
+      background-color: $purple-theme
+
 
 
   #contactsList
+    @include centerAligned(column)
     background-color: $background-black-light
+    color: $white-theme
     width: 100%
     height: 90%
     border-radius: 2vh 2vh 0 0
@@ -129,7 +151,96 @@ $logo-text: arista, "Nunito", sans-serif
 
 
 #chat
+  @include centerAligned(column)
+  justify-content: flex-start
+  width: 90%
+  height: 100%
+  justify-self: center
   grid-row-start: 2
   grid-row-end: 4
   grid-column-start: 2
   grid-column-end: 3
+
+  #receiver
+    @include centerAligned(column)
+    width: 100%
+    height: 10%
+
+    p
+      @include spaceKiller
+      @include fontStyle($white-theme, osSemibold)
+      background-color: $purple-theme-faded
+      border: none
+      border-radius: 18px
+      padding: .8vh 10%
+      font-size: 130%
+      text-align: center
+      color: $white-theme
+
+  #chatWindow
+    @include centerAligned(column)
+    justify-content: flex-start
+    align-items: flex-start
+    width: 100%
+    height: 75%
+
+    .receivedMessage
+      @include receivedMessage
+
+    .lastReceivedMessage
+      @include receivedMessage
+      border-radius: 0 2.8vh 2.8vh 2.8vh
+
+    .sentMessage
+      @include sentMessage
+
+
+  #messageBar
+    @include centerAligned(row)
+    justify-content: space-between
+    height: 12%
+    width: 100%
+
+    #message
+      @include fontStyle($white-theme, osRegular)
+      width: 75%
+      padding: .8vh 1vw
+      border: none
+      border-radius: 2.5vh
+      font-size: 2.5vh
+      background-color: $background-black-light
+      color: $white-theme
+
+    #message:focus-visible
+      outline: none
+
+    #sendMessage
+      color: $white-theme
+      background-color: $purple-theme
+      font-size: 130%
+      min-width: 63px
+
+
+
+
+@media screen and (max-height: 700px)
+  #appGrid
+    grid-template-rows: 70px auto
+    row-gap: 1.8vh
+
+  #contacts, #chat
+    height: 616.42px
+
+
+@media screen and (max-width: 1400px)
+  #appGrid
+    grid-template-columns: auto
+
+  #chat
+    grid-row-start: 2
+    grid-row-end: 4
+    grid-column-start: 1
+    grid-column-end: 3
+
+  #contacts
+    display: none

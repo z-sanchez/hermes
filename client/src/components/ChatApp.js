@@ -28,10 +28,12 @@ class ChatApp extends React.Component {
                 </div>
                 <div id="chat">
                     <div id="receiver">
-                        <h1>Darth Vader</h1>
+                        <p>Darth Vader</p>
                     </div>
                     <div id="chatWindow">
-                        <h1>No Messages</h1>
+                        <p className="receivedMessage">When I left you, I was but a learner ...</p>
+                        <p className="lastReceivedMessage">But now I am the master!</p>
+                        <p className="sentMessage">Lol. Wut?</p>
                     </div>
                     <div id="messageBar">
                         <input id="message" placeholder="type a message ..." type="text"/>
