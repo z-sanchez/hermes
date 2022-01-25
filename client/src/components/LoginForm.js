@@ -1,24 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import ChatApp from "./ChatApp";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
 
+import googleLogo from "../images/googleLogo.svg";
+
+
 // Initialize Firebase
-firebase.initializeApp({apiKey: "AIzaSyDOPMnkeXZQ_QZRsU-0gK3clikC6i8btZE",
-    authDomain: "hermes-34df3.firebaseapp.com",
-    projectId: "hermes-34df3",
-    storageBucket: "hermes-34df3.appspot.com",
-    messagingSenderId: "19858880682",
-    appId: "1:19858880682:web:ac908d6516a297dc58f8d3",
-    measurementId: "G-3BQ9HJQMLE",});
+firebase.initializeApp({
+  apiKey: "AIzaSyDOPMnkeXZQ_QZRsU-0gK3clikC6i8btZE",
+  authDomain: "hermes-34df3.firebaseapp.com",
+  projectId: "hermes-34df3",
+  storageBucket: "hermes-34df3.appspot.com",
+  messagingSenderId: "19858880682",
+  appId: "1:19858880682:web:ac908d6516a297dc58f8d3",
+  measurementId: "G-3BQ9HJQMLE",
+});
 
+function LoginForm() {
 
+  const [initializing, setInitializing] = useState(true);
+  const [user, setUser] = useState(() => firebase.auth.currentUser);
 
+  useEffect(() => {
+    const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        setUser(user);
+      } else {
+        setUser(false);
+      }
+      if (initializing) {
+        setInitializing(false);
+      }
+    });
 
-class LoginForm extends React.Component {
-  signInWithGoogle = async () => {
+    return unsubscribe;
+  }, [initializing]);
+
+  const signInWithGoogle = async () => {
     const provider = new firebase.auth.GoogleAuthProvider();
 
     firebase.auth().useDeviceLanguage();
@@ -30,36 +52,41 @@ class LoginForm extends React.Component {
     }
   };
 
-  render() {
+  const signOut = async () => {
+    try {
+      console.log("yeet");
+      await firebase.auth().signOut();
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  const getLogin = () => {
     return (
       <div className="body">
         <h1 id="logo">HERMES</h1>
-        <form id="loginForm" onClick={this.signInWithGoogle}>
+        <form id="loginForm">
           <h1 id="loginForm__title">Login</h1>
           <p id="loginForm__signUp">
-            Don't have an account? <a href="https://google.com">Sign Up</a>
+            Don't have an account?{" "}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href="https://accounts.google.com/signup/v2/webcreateaccount?flowName=GlifWebSignIn&flowEntry=SignUp"
+            >
+              Sign Up
+            </a>
           </p>
-          <div className="loginForm__field">
-            <h1 className="field__text">Email Address</h1>
-            <input
-              type="text"
-              placeholder={"you@example.com"}
-              className="field__enterInfo"
-            />
+          <div id="loginForm__loginButton" onClick={signInWithGoogle}>
+            <img src={googleLogo} alt="googleLogo" />
+            <h1>Sign in with Google</h1>
           </div>
-          <div className="loginForm__field">
-            <h1 className="field__text">Password</h1>
-            <input
-              type="text"
-              placeholder={"Enter 6 characters or more"}
-              className="field__enterInfo"
-            />
-          </div>
-          <input id="loginForm__loginButton" type="submit" value="Login" />
         </form>
       </div>
     );
-  }
+  };
+
+  return user ? (<ChatApp signOut={signOut} /> ): (getLogin());
 }
 
 export default LoginForm;

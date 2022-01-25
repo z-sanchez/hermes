@@ -43,9 +43,6 @@ html
   width: 100vw
   padding: 0
   margin: 0
-  background-image: url('../images/background-dark.svg')
-  background-size: cover
-  background-repeat: no-repeat
   line-height: 1.6
   font-family: "Nunito", sans-serif
   -webkit-font-smoothing: antialiased
@@ -58,10 +55,20 @@ h4,
 h5
   line-height: 1.2
 
+body
+  @include spaceKiller
+
+#root
+  width: 100vw
+  height: 100vh
+  background-image: url('../images/background-dark.svg')
+  background-size: cover
+  background-repeat: no-repeat
+
 .body
   @include centerAligned()
-  margin-top: 7vh
   position: relative
+  height: 80vh
   left: 22vw
 
 #logo
@@ -69,6 +76,7 @@ h5
   font-family: $logo-text
   font-size: 10rem
   color: $white-theme
+  margin-bottom: 4vh
 
 
 #loginForm
@@ -76,8 +84,8 @@ h5
   @include spaceKiller
   align-items: flex-start
   justify-content: space-between
-  width: 18vw
-  height: 52vh
+  width: 20vw
+  height: 25vh
   padding: 1vh 2.5vw 0 2.5vw
   border-radius: 2vh
   background-color: $background-black-light
@@ -95,8 +103,9 @@ h5
 #loginForm__signUp
   @include spaceKiller
   @include fontStyle($color: $white-theme, $font: osRegular)
+  position: relative
   font-size: 1rem
-  margin-bottom: 2vh
+  bottom: .3vh
 
 
 
@@ -104,45 +113,33 @@ a
   @include fontStyle($color: $purple-theme, $font: osRegular)
 
 
-.loginForm__field
-  @include centerAligned($flow: column)
-  width: 90%
-  align-items: flex-start
-  margin-bottom: 2vh
-
-
-.field__text
-  @include spaceKiller
-  @include fontStyle($color: $white-theme, $font: osSemibold)
-  font-size: 2rem
-
-.field__enterInfo
-  @include fontStyle($color: $darker-text, $font: osRegular)
-  font-size: .8rem
-  padding: 1vh .5vw
-  width: 100%
-  background-color: $background-black-light
-  border: .1vw solid $white-theme
-  border-radius: 5px
-
-.field__enterInfo:focus
-  color: $white-theme
-
 
 #loginForm__loginButton
   @include spaceKiller
   @include fontStyle($color: $white-theme, $font: osRegular)
+  @include centerAligned($flow: row)
+  justify-content: center
   font-size: 1.5rem
-  width: 20.6vw
-  height: 18%
+  width: 25vw
+  height: 50%
   align-self: center
-  justify-self: flex-end
   background: radial-gradient($purple-theme, #b057ff 170%)
   border-style: none
   border-radius: 0 0 1vh 1vh
 
+  img
+    width: 3vw
+    margin-right: 1vw
+
+  h1
+    @include fontStyle($color: $white-theme, $font: osRegular)
+    font-size: 3vh
+    margin-left: 1vw
+
+
 #loginForm__loginButton:hover
   background: $purple-theme
+
 
 
 
@@ -160,9 +157,6 @@ a
 
 
 @media screen and (max-height: 1000px)
-  #loginForm
-    height: 468.5px
-    padding: 10px 25px 0 25px
 
   #loginForm__signUp
     margin-bottom: 16.36px
@@ -192,24 +186,27 @@ a
 
 
   #logo
-    font-size: 5.5rem
-    margin-bottom: 10%
+    position: relative
+    bottom: 150px
+    font-size: 5.8rem
     color: $white-theme
 
   #loginForm
-    height: 30%
+    height: 20%
     width: 300px
     padding: 10px 25px 0 25px
 
   #loginForm__signUp
     margin-bottom: 16.36px
 
-  .loginForm__field
-    margin-bottom: 16.36px
+
 
   #loginForm__loginButton
     width: 350px
     height: 60px
+
+    img
+      width: 40px
 
 
 

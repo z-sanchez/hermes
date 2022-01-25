@@ -16,9 +16,6 @@ html {
   width: 100vw;
   padding: 0;
   margin: 0;
-  background-image: url("../images/background-dark.svg");
-  background-size: cover;
-  background-repeat: no-repeat;
   line-height: 1.6;
   font-family: "Nunito", sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -33,14 +30,27 @@ h5 {
   line-height: 1.2;
 }
 
+body {
+  padding: 0;
+  margin: 0;
+}
+
+#root {
+  width: 100vw;
+  height: 100vh;
+  background-image: url("../images/background-dark.svg");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
 .body {
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: center;
   align-content: center;
-  margin-top: 7vh;
   position: relative;
+  height: 80vh;
   left: 22vw;
 }
 
@@ -50,6 +60,7 @@ h5 {
   font-family: arista, "Nunito", sans-serif;
   font-size: 10rem;
   color: #E3E3E3;
+  margin-bottom: 4vh;
 }
 
 #loginForm {
@@ -62,8 +73,8 @@ h5 {
   margin: 0;
   align-items: flex-start;
   justify-content: space-between;
-  width: 18vw;
-  height: 52vh;
+  width: 20vw;
+  height: 25vh;
   padding: 1vh 2.5vw 0 2.5vw;
   border-radius: 2vh;
   background-color: #33373E;
@@ -83,8 +94,9 @@ h5 {
   margin: 0;
   font-family: osRegular, "Nunito", sans-serif;
   color: #E3E3E3;
+  position: relative;
   font-size: 1rem;
-  margin-bottom: 2vh;
+  bottom: 0.3vh;
 }
 
 a {
@@ -92,53 +104,34 @@ a {
   color: #9430EB;
 }
 
-.loginForm__field {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  width: 90%;
-  align-items: flex-start;
-  margin-bottom: 2vh;
-}
-
-.field__text {
-  padding: 0;
-  margin: 0;
-  font-family: osSemibold, "Nunito", sans-serif;
-  color: #E3E3E3;
-  font-size: 2rem;
-}
-
-.field__enterInfo {
-  font-family: osRegular, "Nunito", sans-serif;
-  color: #858585;
-  font-size: 0.8rem;
-  padding: 1vh 0.5vw;
-  width: 100%;
-  background-color: #33373E;
-  border: 0.1vw solid #E3E3E3;
-  border-radius: 5px;
-}
-
-.field__enterInfo:focus {
-  color: #E3E3E3;
-}
-
 #loginForm__loginButton {
   padding: 0;
   margin: 0;
   font-family: osRegular, "Nunito", sans-serif;
   color: #E3E3E3;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  justify-content: center;
   font-size: 1.5rem;
-  width: 20.6vw;
-  height: 18%;
+  width: 25vw;
+  height: 50%;
   align-self: center;
-  justify-self: flex-end;
   background: radial-gradient(#9430EB, #b057ff 170%);
   border-style: none;
   border-radius: 0 0 1vh 1vh;
+}
+#loginForm__loginButton img {
+  width: 3vw;
+  margin-right: 1vw;
+}
+#loginForm__loginButton h1 {
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #E3E3E3;
+  font-size: 3vh;
+  margin-left: 1vw;
 }
 
 #loginForm__loginButton:hover {
@@ -160,11 +153,6 @@ a {
   }
 }
 @media screen and (max-height: 1000px) {
-  #loginForm {
-    height: 468.5px;
-    padding: 10px 25px 0 25px;
-  }
-
   #loginForm__signUp {
     margin-bottom: 16.36px;
   }
@@ -182,13 +170,14 @@ a {
   }
 
   #logo {
-    font-size: 5.5rem;
-    margin-bottom: 10%;
+    position: relative;
+    bottom: 150px;
+    font-size: 5.8rem;
     color: #E3E3E3;
   }
 
   #loginForm {
-    height: 30%;
+    height: 20%;
     width: 300px;
     padding: 10px 25px 0 25px;
   }
@@ -197,13 +186,12 @@ a {
     margin-bottom: 16.36px;
   }
 
-  .loginForm__field {
-    margin-bottom: 16.36px;
-  }
-
   #loginForm__loginButton {
     width: 350px;
     height: 60px;
+  }
+  #loginForm__loginButton img {
+    width: 40px;
   }
 }
 
