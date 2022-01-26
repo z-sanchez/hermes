@@ -219,6 +219,7 @@
   outline: none;
 }
 #chat #messageBar #sendMessage {
+  font-family: osRegular, "Nunito", sans-serif;
   color: #E3E3E3;
   background-color: #9430EB;
   font-size: 130%;

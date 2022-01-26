@@ -85,7 +85,7 @@ function LoginForm() {
     );
   };
 
-  return user ? (<ChatApp signOut={signOut} /> ): (getLogin());
+  return user ? (<ChatApp firebase={firebase} signOut={signOut} /> ): (getLogin());
 }
 
 export default LoginForm;
