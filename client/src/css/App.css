@@ -70,7 +70,7 @@ body {
   align-items: flex-start;
   justify-content: space-between;
   width: 20vw;
-  height: 25vh;
+  height: 20vh;
   padding: 1vh 2.5vw 0 2.5vw;
   border-radius: 2vh;
   background-color: #33373E;
@@ -113,14 +113,14 @@ a {
   justify-content: center;
   font-size: 1.5rem;
   width: 25vw;
-  height: 50%;
+  height: 40%;
   align-self: center;
   background: radial-gradient(#9430EB, #b057ff 170%);
   border-style: none;
   border-radius: 0 0 1vh 1vh;
 }
 #loginForm__loginButton img {
-  width: 3vw;
+  width: 2.8vw;
   margin-right: 1vw;
 }
 #loginForm__loginButton h1 {
