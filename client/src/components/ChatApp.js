@@ -10,12 +10,14 @@ class ChatApp extends React.Component {
     super(props);
     this.state = {
       messages: [],
+      collection: null,
     };
   }
   componentDidMount() {
     document.querySelector("#root").style.backgroundImage = "none";
 
     const db = this.props.firebase.firestore();
+    const messagesRef = db.collection('messages');
     const query = db.collection("messages").orderBy("createdAt").limit(10);
 
     query.onSnapshot((querySnapshot) => {
@@ -26,6 +28,7 @@ class ChatApp extends React.Component {
 
       this.setState({
         messages: data,
+        collection: messagesRef,
       });
     });
   }
@@ -35,9 +38,24 @@ class ChatApp extends React.Component {
       "url(http://localhost:3000/static/media/background-dark.b8e12852bbefc8a56091.svg)";
   }
 
+  handleOnSend = () => {
+    const message = document.getElementById("message").value.trim();
+    const query = this.state.collection;
+
+    if (message) {
+      query.add({
+        text: message,
+        createdAt: this.props.firebase.firestore.FieldValue.serverTimestamp(),
+        received: false,
+      });
+    }
+
+    document.getElementById("message").value = "";
+  };
+
   renderMessages() {
     let lastReceivedIndex = null,
-        lastSentIndex = null;
+      lastSentIndex = null;
 
     const messages = this.state.messages.map((e, index) => {
       if (e.received) {
@@ -59,16 +77,17 @@ class ChatApp extends React.Component {
 
     if (this.state.messages.length > 0) {
       messages[lastReceivedIndex] = (
-          <p key={lastReceivedIndex} className="lastReceivedMessage">
-            {this.state.messages[lastReceivedIndex].text}
-          </p>
+        <p key={lastReceivedIndex} className="lastReceivedMessage">
+          {this.state.messages[lastReceivedIndex].text}
+        </p>
       );
 
       messages[lastSentIndex] = (
-          <p key={lastSentIndex} className="lastSentMessage">
-            {this.state.messages[lastSentIndex].text}
-          </p>
-      );}
+        <p key={lastSentIndex} className="lastSentMessage">
+          {this.state.messages[lastSentIndex].text}
+        </p>
+      );
+    }
 
     return messages;
   }
@@ -98,7 +117,11 @@ class ChatApp extends React.Component {
           <div id="chatWindow">{this.renderMessages()}</div>
           <div id="messageBar">
             <input id="message" placeholder="type a message ..." type="text" />
-            <button id="sendMessage" className="buttons">
+            <button
+              id="sendMessage"
+              onClick={this.handleOnSend}
+              className="buttons"
+            >
               Send
             </button>
           </div>
