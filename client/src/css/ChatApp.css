@@ -164,7 +164,9 @@
   justify-content: flex-start;
   align-items: flex-start;
   width: 100%;
-  height: 75%;
+  height: 78%;
+  max-height: 670px;
+  overflow: scroll;
 }
 #chat #chatWindow .receivedMessage {
   font-family: osSemibold, "Nunito", sans-serif;
@@ -210,6 +212,9 @@
   color: #E3E3E3;
   border-radius: 2.8vh 0 2.8vh 2.8vh;
 }
+#chat #chatWindow::-webkit-scrollbar {
+  display: none;
+}
 #chat #messageBar {
   display: flex;
   flex-flow: row;
@@ -250,6 +255,9 @@
 
   #contacts, #chat {
     height: 616.42px;
+  }
+  #contacts #chatWindow, #chat #chatWindow {
+    height: 70%;
   }
 }
 @media screen and (max-width: 1400px) {

@@ -6,129 +6,135 @@ import "firebase/compat/firestore";
 
 
 class ChatApp extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      messages: [],
-      collection: null,
+    constructor(props) {
+        super(props);
+        this.bottomChatRef = React.createRef();
+        this.state = {
+            messages: [],
+            collection: null,
+        };
+    }
+
+    componentDidMount() {
+        document.querySelector("#root").style.backgroundImage = "none";
+
+        const db = this.props.firebase.firestore();
+        const messagesRef = db.collection('messages');
+        const query = db.collection("messages").orderBy("createdAt").limit(10);
+
+        query.onSnapshot((querySnapshot) => {
+            const data = querySnapshot.docs.map((doc) => ({
+                ...doc.data(),
+                id: doc.id,
+            }));
+
+            this.setState({
+                messages: data,
+                collection: messagesRef,
+            });
+        });
+    }
+
+    componentWillUnmount() {
+        document.querySelector("#root").style.backgroundImage =
+            "url(http://localhost:3000/static/media/background-dark.b8e12852bbefc8a56091.svg)";
+    }
+
+    handleOnSend = () => {
+        const message = document.getElementById("message").value.trim();
+        const query = this.state.collection;
+
+        if (message) {
+            query.add({
+                text: message,
+                createdAt: this.props.firebase.firestore.FieldValue.serverTimestamp(),
+                received: false,
+            });
+        }
+
+        document.getElementById("message").value = "";
+
+        this.bottomChatRef.current.scrollIntoView({ behavior: 'smooth' });
     };
-  }
-  componentDidMount() {
-    document.querySelector("#root").style.backgroundImage = "none";
 
-    const db = this.props.firebase.firestore();
-    const messagesRef = db.collection('messages');
-    const query = db.collection("messages").orderBy("createdAt").limit(10);
+    renderMessages() {
+        let lastReceivedIndex = null,
+            lastSentIndex = null;
 
-    query.onSnapshot((querySnapshot) => {
-      const data = querySnapshot.docs.map((doc) => ({
-        ...doc.data(),
-        id: doc.id,
-      }));
+        const messages = this.state.messages.map((e, index) => {
+            if (e.received) {
+                lastReceivedIndex = index;
+                return (
+                    <p key={index} className="receivedMessage">
+                        {e.text}
+                    </p>
+                );
+            } else {
+                lastSentIndex = index;
+                return (
+                    <p key={index} className="sentMessage">
+                        {e.text}
+                    </p>
+                );
+            }
+        });
 
-      this.setState({
-        messages: data,
-        collection: messagesRef,
-      });
-    });
-  }
+        if (this.state.messages.length > 0) {
+            messages[lastReceivedIndex] = (
+                <p key={lastReceivedIndex} className="lastReceivedMessage">
+                    {this.state.messages[lastReceivedIndex].text}
+                </p>
+            );
 
-  componentWillUnmount() {
-    document.querySelector("#root").style.backgroundImage =
-      "url(http://localhost:3000/static/media/background-dark.b8e12852bbefc8a56091.svg)";
-  }
+            messages[lastSentIndex] = (
+                <p key={lastSentIndex} className="lastSentMessage">
+                    {this.state.messages[lastSentIndex].text}
+                </p>
+            );
+        }
 
-  handleOnSend = () => {
-    const message = document.getElementById("message").value.trim();
-    const query = this.state.collection;
-
-    if (message) {
-      query.add({
-        text: message,
-        createdAt: this.props.firebase.firestore.FieldValue.serverTimestamp(),
-        received: false,
-      });
+        return messages;
     }
 
-    document.getElementById("message").value = "";
-  };
-
-  renderMessages() {
-    let lastReceivedIndex = null,
-      lastSentIndex = null;
-
-    const messages = this.state.messages.map((e, index) => {
-      if (e.received) {
-        lastReceivedIndex = index;
+    render() {
         return (
-          <p key={index} className="receivedMessage">
-            {e.text}
-          </p>
+            <div id="appGrid">
+                <div id="header">
+                    <h1 onClick={this.props.signOut}>HERMES</h1>
+                    <Clock/>
+                </div>
+                <div id="contacts">
+                    <div id="buttonBar">
+                        <input type="search" id="searchBar" placeholder="Search ..."/>
+                        <button id="addButton" className="buttons">
+                            Add
+                        </button>
+                    </div>
+                    <div id="contactsList">
+                        <p id="noContacts">No Contacts</p>
+                    </div>
+                </div>
+                <div id="chat">
+                    <div id="receiver">
+                        <p>Darth Vader</p>
+                    </div>
+                    <div id="chatWindow">{this.renderMessages()}
+                        <div ref={this.bottomChatRef}/>
+                    </div>
+                    <div id="messageBar">
+                        <input id="message" placeholder="type a message ..." type="text"/>
+                        <button
+                            id="sendMessage"
+                            onClick={this.handleOnSend}
+                            className="buttons"
+                        >
+                            Send
+                        </button>
+                    </div>
+                </div>
+            </div>
         );
-      } else {
-        lastSentIndex = index;
-        return (
-          <p key={index} className="sentMessage">
-            {e.text}
-          </p>
-        );
-      }
-    });
-
-    if (this.state.messages.length > 0) {
-      messages[lastReceivedIndex] = (
-        <p key={lastReceivedIndex} className="lastReceivedMessage">
-          {this.state.messages[lastReceivedIndex].text}
-        </p>
-      );
-
-      messages[lastSentIndex] = (
-        <p key={lastSentIndex} className="lastSentMessage">
-          {this.state.messages[lastSentIndex].text}
-        </p>
-      );
     }
-
-    return messages;
-  }
-
-  render() {
-    return (
-      <div id="appGrid">
-        <div id="header">
-          <h1 onClick={this.props.signOut}>HERMES</h1>
-          <Clock />
-        </div>
-        <div id="contacts">
-          <div id="buttonBar">
-            <input type="search" id="searchBar" placeholder="Search ..." />
-            <button id="addButton" className="buttons">
-              Add
-            </button>
-          </div>
-          <div id="contactsList">
-            <p id="noContacts">No Contacts</p>
-          </div>
-        </div>
-        <div id="chat">
-          <div id="receiver">
-            <p>Darth Vader</p>
-          </div>
-          <div id="chatWindow">{this.renderMessages()}</div>
-          <div id="messageBar">
-            <input id="message" placeholder="type a message ..." type="text" />
-            <button
-              id="sendMessage"
-              onClick={this.handleOnSend}
-              className="buttons"
-            >
-              Send
-            </button>
-          </div>
-        </div>
-      </div>
-    );
-  }
 }
 
 export default ChatApp;

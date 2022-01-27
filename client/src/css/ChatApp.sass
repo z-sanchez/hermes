@@ -172,7 +172,9 @@ $logo-text: arista, "Nunito", sans-serif
     justify-content: flex-start
     align-items: flex-start
     width: 100%
-    height: 75%
+    height: 78%
+    max-height: 670px
+    overflow: scroll
 
     .receivedMessage
       @include message
@@ -194,6 +196,8 @@ $logo-text: arista, "Nunito", sans-serif
       color: $white-theme
       border-radius: 2.8vh 0 2.8vh 2.8vh
 
+  #chatWindow::-webkit-scrollbar
+    display: none
 
 
   #messageBar
@@ -224,6 +228,8 @@ $logo-text: arista, "Nunito", sans-serif
 
 
 
+
+
 @media screen and (max-height: 700px)
   #appGrid
     grid-template-rows: 70px auto
@@ -231,6 +237,9 @@ $logo-text: arista, "Nunito", sans-serif
 
   #contacts, #chat
     height: 616.42px
+
+    #chatWindow
+      height: 70%
 
 
 @media screen and (max-width: 1400px)
@@ -242,6 +251,7 @@ $logo-text: arista, "Nunito", sans-serif
     grid-row-end: 4
     grid-column-start: 1
     grid-column-end: 3
+
 
   #contacts
     display: none
