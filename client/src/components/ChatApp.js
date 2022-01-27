@@ -1,10 +1,9 @@
 import React from "react";
 import Clock from "./Clock";
 
-import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+
 
 class ChatApp extends React.Component {
   constructor(props) {
@@ -15,7 +14,6 @@ class ChatApp extends React.Component {
   }
   componentDidMount() {
     document.querySelector("#root").style.backgroundImage = "none";
-    Clock();
 
     const db = this.props.firebase.firestore();
     const query = db.collection("messages").orderBy("createdAt").limit(10);
@@ -38,14 +36,19 @@ class ChatApp extends React.Component {
   }
 
   renderMessages() {
-    return this.state.messages.map((e, index) => {
+    let lastReceivedIndex = null,
+        lastSentIndex = null;
+
+    const messages = this.state.messages.map((e, index) => {
       if (e.received) {
+        lastReceivedIndex = index;
         return (
           <p key={index} className="receivedMessage">
             {e.text}
           </p>
         );
       } else {
+        lastSentIndex = index;
         return (
           <p key={index} className="sentMessage">
             {e.text}
@@ -53,6 +56,21 @@ class ChatApp extends React.Component {
         );
       }
     });
+
+    if (this.state.messages.length > 0) {
+      messages[lastReceivedIndex] = (
+          <p key={lastReceivedIndex} className="lastReceivedMessage">
+            {this.state.messages[lastReceivedIndex].text}
+          </p>
+      );
+
+      messages[lastSentIndex] = (
+          <p key={lastSentIndex} className="lastSentMessage">
+            {this.state.messages[lastSentIndex].text}
+          </p>
+      );}
+
+    return messages;
   }
 
   render() {
@@ -60,7 +78,7 @@ class ChatApp extends React.Component {
       <div id="appGrid">
         <div id="header">
           <h1 onClick={this.props.signOut}>HERMES</h1>
-          <p id="clock">Clock</p>
+          <Clock />
         </div>
         <div id="contacts">
           <div id="buttonBar">

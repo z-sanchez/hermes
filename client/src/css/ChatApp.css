@@ -187,12 +187,28 @@
 }
 #chat #chatWindow .sentMessage {
   font-family: osSemibold, "Nunito", sans-serif;
-  color: #E3E3E3;
-  background-color: #9430EB;
-  align-self: flex-end;
+  color: #282D34;
+  background-color: #E3E3E3;
   padding: 2vh 2vw;
-  border-radius: 2.8vh 0 2.8vh 2.8vh;
+  border-radius: 2.8vh;
   max-width: 45%;
+  margin-bottom: 0.2vh;
+  align-self: flex-end;
+  background-color: #9430EB;
+  color: #E3E3E3;
+}
+#chat #chatWindow .lastSentMessage {
+  font-family: osSemibold, "Nunito", sans-serif;
+  color: #282D34;
+  background-color: #E3E3E3;
+  padding: 2vh 2vw;
+  border-radius: 2.8vh;
+  max-width: 45%;
+  margin-bottom: 0.2vh;
+  align-self: flex-end;
+  background-color: #9430EB;
+  color: #E3E3E3;
+  border-radius: 2.8vh 0 2.8vh 2.8vh;
 }
 #chat #messageBar {
   display: flex;

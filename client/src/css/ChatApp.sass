@@ -35,23 +35,13 @@ $logo-text: arista, "Nunito", sans-serif
   justify-content: center
   align-content: center
 
-@mixin receivedMessage
+@mixin message
   @include fontStyle($background-black, osSemibold)
   background-color: $white-theme
   padding: 2vh 2vw
   border-radius: 2.8vh
   max-width: 45%
   margin-bottom: .2vh
-
-@mixin sentMessage
-  @include fontStyle($white-theme, osSemibold)
-  background-color: $purple-theme
-  align-self: flex-end
-  padding: 2vh 2vw
-  border-radius: 2.8vh 0 2.8vh 2.8vh
-  max-width: 45%
-
-
 
 
 
@@ -185,14 +175,25 @@ $logo-text: arista, "Nunito", sans-serif
     height: 75%
 
     .receivedMessage
-      @include receivedMessage
+      @include message
 
     .lastReceivedMessage
-      @include receivedMessage
+      @include message
       border-radius: 0 2.8vh 2.8vh 2.8vh
 
     .sentMessage
-      @include sentMessage
+      @include message
+      align-self: flex-end
+      background-color: $purple-theme
+      color: $white-theme
+
+    .lastSentMessage
+      @include message
+      align-self: flex-end
+      background-color: $purple-theme
+      color: $white-theme
+      border-radius: 2.8vh 0 2.8vh 2.8vh
+
 
 
   #messageBar
