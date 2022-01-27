@@ -1,14 +1,16 @@
 import React from "react";
 import Clock from "./Clock";
+import ContactList from "./ContactList";
 
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-
 
 class ChatApp extends React.Component {
     constructor(props) {
         super(props);
         this.bottomChatRef = React.createRef();
+        this.queryRef = React.createRef();
+        this.collectionRef = React.createRef();
         this.state = {
             messages: [],
             collection: null,
@@ -17,28 +19,35 @@ class ChatApp extends React.Component {
 
     componentDidMount() {
         document.querySelector("#root").style.backgroundImage = "none";
+        this.bottomChatRef.current.scrollIntoView({behavior: "smooth"});
 
         const db = this.props.firebase.firestore();
-        const messagesRef = db.collection('messages');
-        const query = db.collection("messages").orderBy("createdAt").limit(10);
-
-        query.onSnapshot((querySnapshot) => {
+        this.collectionRef = db.collection("messages");
+        this.queryRef.current = db.collection("messages").orderBy("createdAt").limit(10);
+        this.getMessages = this.queryRef.current.onSnapshot((querySnapshot) => {
             const data = querySnapshot.docs.map((doc) => ({
                 ...doc.data(),
                 id: doc.id,
             }));
 
-            this.setState({
-                messages: data,
-                collection: messagesRef,
-            });
+            if (!this.queryRef.current) console.log("empty");
+
+            if (this.queryRef.current) {
+                console.log("Not empty");
+                this.setState({
+                    messages: data,
+                    collection: this.collectionRef,
+                });
+            }
         });
     }
 
     componentWillUnmount() {
+        this.getMessages();
         document.querySelector("#root").style.backgroundImage =
             "url(http://localhost:3000/static/media/background-dark.b8e12852bbefc8a56091.svg)";
     }
+
 
     handleOnSend = () => {
         const message = document.getElementById("message").value.trim();
@@ -54,12 +63,12 @@ class ChatApp extends React.Component {
 
         document.getElementById("message").value = "";
 
-        this.bottomChatRef.current.scrollIntoView({ behavior: 'smooth' });
+        this.bottomChatRef.current.scrollIntoView({behavior: "smooth"});
     };
 
     renderMessages() {
-        let lastReceivedIndex = null,
-            lastSentIndex = null;
+        let lastReceivedIndex = false,
+            lastSentIndex = false;
 
         const messages = this.state.messages.map((e, index) => {
             if (e.received) {
@@ -79,13 +88,15 @@ class ChatApp extends React.Component {
             }
         });
 
-        if (this.state.messages.length > 0) {
+        if (lastReceivedIndex !== false) {
             messages[lastReceivedIndex] = (
                 <p key={lastReceivedIndex} className="lastReceivedMessage">
                     {this.state.messages[lastReceivedIndex].text}
                 </p>
             );
+        }
 
+        if (lastSentIndex !== false) {
             messages[lastSentIndex] = (
                 <p key={lastSentIndex} className="lastSentMessage">
                     {this.state.messages[lastSentIndex].text}
@@ -110,15 +121,14 @@ class ChatApp extends React.Component {
                             Add
                         </button>
                     </div>
-                    <div id="contactsList">
-                        <p id="noContacts">No Contacts</p>
-                    </div>
+                    <ContactList/>
                 </div>
                 <div id="chat">
                     <div id="receiver">
                         <p>Darth Vader</p>
                     </div>
-                    <div id="chatWindow">{this.renderMessages()}
+                    <div id="chatWindow">
+                        {this.renderMessages()}
                         <div ref={this.bottomChatRef}/>
                     </div>
                     <div id="messageBar">
