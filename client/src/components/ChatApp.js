@@ -6,145 +6,147 @@ import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 class ChatApp extends React.Component {
-    constructor(props) {
-        super(props);
-        this.bottomChatRef = React.createRef();
-        this.queryRef = React.createRef();
-        this.collectionRef = React.createRef();
-        this.state = {
-            messages: [],
-            collection: null,
-        };
-    }
-
-    componentDidMount() {
-        document.querySelector("#root").style.backgroundImage = "none";
-        this.bottomChatRef.current.scrollIntoView({behavior: "smooth"});
-
-        const db = this.props.firebase.firestore();
-        this.collectionRef = db.collection("messages");
-        this.queryRef.current = db.collection("messages").orderBy("createdAt").limit(10);
-        this.getMessages = this.queryRef.current.onSnapshot((querySnapshot) => {
-            const data = querySnapshot.docs.map((doc) => ({
-                ...doc.data(),
-                id: doc.id,
-            }));
-
-            if (!this.queryRef.current) console.log("empty");
-
-            if (this.queryRef.current) {
-                console.log("Not empty");
-                this.setState({
-                    messages: data,
-                    collection: this.collectionRef,
-                });
-            }
-        });
-    }
-
-    componentWillUnmount() {
-        this.getMessages();
-        document.querySelector("#root").style.backgroundImage =
-            "url(http://localhost:3000/static/media/background-dark.b8e12852bbefc8a56091.svg)";
-    }
-
-
-    handleOnSend = () => {
-        const message = document.getElementById("message").value.trim();
-        const query = this.state.collection;
-
-        if (message) {
-            query.add({
-                text: message,
-                createdAt: this.props.firebase.firestore.FieldValue.serverTimestamp(),
-                received: false,
-            });
-        }
-
-        document.getElementById("message").value = "";
-
-        this.bottomChatRef.current.scrollIntoView({behavior: "smooth"});
+  constructor(props) {
+    super(props);
+    this.bottomChatRef = React.createRef();
+    this.queryRef = React.createRef();
+    this.collectionRef = React.createRef();
+    this.state = {
+      messages: [],
+      collection: null,
     };
+  }
 
-    renderMessages() {
-        let lastReceivedIndex = false,
-            lastSentIndex = false;
+  componentDidMount() {
+    document.querySelector("#root").style.backgroundImage = "none";
+    this.bottomChatRef.current.scrollIntoView({ behavior: "smooth" });
 
-        const messages = this.state.messages.map((e, index) => {
-            if (e.received) {
-                lastReceivedIndex = index;
-                return (
-                    <p key={index} className="receivedMessage">
-                        {e.text}
-                    </p>
-                );
-            } else {
-                lastSentIndex = index;
-                return (
-                    <p key={index} className="sentMessage">
-                        {e.text}
-                    </p>
-                );
-            }
+    const db = this.props.firebase.firestore();
+    this.collectionRef = db.collection("messages");
+    this.queryRef.current = db
+      .collection("messages")
+      .orderBy("createdAt", "desc")
+      .limit(10);
+    this.getMessages = this.queryRef.current.onSnapshot((querySnapshot) => {
+      const data = querySnapshot.docs.map((doc) => ({
+        ...doc.data(),
+        id: doc.id,
+      }));
+
+
+      if (this.queryRef.current) {
+        this.setState({
+          messages: data.reverse(),
+          collection: this.collectionRef,
         });
+      }
+    });
+  }
 
-        if (lastReceivedIndex !== false) {
-            messages[lastReceivedIndex] = (
-                <p key={lastReceivedIndex} className="lastReceivedMessage">
-                    {this.state.messages[lastReceivedIndex].text}
-                </p>
-            );
-        }
+  componentWillUnmount() {
+    this.getMessages();
+    document.querySelector("#root").style.backgroundImage =
+      "url(http://localhost:3000/static/media/background-dark.b8e12852bbefc8a56091.svg)";
+  }
 
-        if (lastSentIndex !== false) {
-            messages[lastSentIndex] = (
-                <p key={lastSentIndex} className="lastSentMessage">
-                    {this.state.messages[lastSentIndex].text}
-                </p>
-            );
-        }
+  componentDidUpdate() {
+    this.bottomChatRef.current.scrollIntoView({ behavior: "smooth" });
+  }
 
-        return messages;
+  handleOnSend = () => {
+    const message = document.getElementById("message").value.trim();
+    const query = this.state.collection;
+
+    if (message) {
+      query.add({
+        text: message,
+        createdAt: this.props.firebase.firestore.FieldValue.serverTimestamp(),
+        received: false,
+      });
     }
 
-    render() {
+    document.getElementById("message").value = "";
+  };
+
+  renderMessages() {
+    let lastReceivedIndex = false,
+      lastSentIndex = false;
+
+    const messages = this.state.messages.map((e, index) => {
+      if (e.received) {
+        lastReceivedIndex = index;
         return (
-            <div id="appGrid">
-                <div id="header">
-                    <h1 onClick={this.props.signOut}>HERMES</h1>
-                    <Clock/>
-                </div>
-                <div id="contacts">
-                    <div id="buttonBar">
-                        <input type="search" id="searchBar" placeholder="Search ..."/>
-                        <button id="addButton" className="buttons">
-                            Add
-                        </button>
-                    </div>
-                    <ContactList/>
-                </div>
-                <div id="chat">
-                    <div id="receiver">
-                        <p>Darth Vader</p>
-                    </div>
-                    <div id="chatWindow">
-                        {this.renderMessages()}
-                        <div ref={this.bottomChatRef}/>
-                    </div>
-                    <div id="messageBar">
-                        <input id="message" placeholder="type a message ..." type="text"/>
-                        <button
-                            id="sendMessage"
-                            onClick={this.handleOnSend}
-                            className="buttons"
-                        >
-                            Send
-                        </button>
-                    </div>
-                </div>
-            </div>
+          <p key={index} className="receivedMessage">
+            {e.text}
+          </p>
         );
+      } else {
+        lastSentIndex = index;
+        return (
+          <p key={index} className="sentMessage">
+            {e.text}
+          </p>
+        );
+      }
+    });
+
+    if (lastReceivedIndex !== false) {
+      messages[lastReceivedIndex] = (
+        <p key={lastReceivedIndex} className="lastReceivedMessage">
+          {this.state.messages[lastReceivedIndex].text}
+        </p>
+      );
     }
+
+    if (lastSentIndex !== false) {
+      messages[lastSentIndex] = (
+        <p key={lastSentIndex} className="lastSentMessage">
+          {this.state.messages[lastSentIndex].text}
+        </p>
+      );
+    }
+
+    return messages;
+  }
+
+  render() {
+    return (
+      <div id="appGrid">
+        <div id="header">
+          <h1 onClick={this.props.signOut}>HERMES</h1>
+          <Clock />
+        </div>
+        <div id="contacts">
+          <div id="buttonBar">
+            <input type="search" id="searchBar" placeholder="Search ..." />
+            <button id="addButton" className="buttons">
+              Add
+            </button>
+          </div>
+          <ContactList />
+        </div>
+        <div id="chat">
+          <div id="receiver">
+            <p>Darth Vader</p>
+          </div>
+          <div id="chatWindow">
+            {this.renderMessages()}
+            <div ref={this.bottomChatRef} />
+          </div>
+          <div id="messageBar">
+            <input id="message" placeholder="type a message ..." type="text" />
+            <button
+              id="sendMessage"
+              onClick={this.handleOnSend}
+              className="buttons"
+            >
+              Send
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  }
 }
 
 export default ChatApp;
