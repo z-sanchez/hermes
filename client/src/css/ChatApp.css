@@ -116,6 +116,64 @@
   width: 100%;
   height: 90%;
   border-radius: 2vh 2vh 0 0;
+  justify-content: flex-start;
+}
+#contacts #contactsList #noContacts {
+  position: relative;
+  top: 50%;
+}
+#contacts #contactsList .contact--active {
+  background-color: #583E79;
+  border-radius: 2vh 2vh 0 0;
+}
+#contacts #contactsList .contact {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  height: 20%;
+  width: 100%;
+  justify-content: flex-start;
+}
+#contacts #contactsList .contact .contact__activeBar--lit {
+  justify-self: flex-start;
+  width: 2%;
+  margin-right: 3%;
+  height: 100%;
+  background-color: #9430EB;
+  border-radius: 2vh;
+}
+#contacts #contactsList .contact .contact__activeBar {
+  justify-self: flex-start;
+  width: 2%;
+  margin-right: 3%;
+  height: 95%;
+}
+#contacts #contactsList .contact img {
+  width: 15%;
+  margin-right: 3%;
+  height: 50%;
+  border-radius: 50%;
+}
+#contacts #contactsList .contact .contact__text {
+  width: 72%;
+  height: 42%;
+  overflow: hidden;
+}
+#contacts #contactsList .contact .contact__text h1 {
+  padding: 0;
+  margin: 0;
+  font-family: osSemibold, "Nunito", sans-serif;
+  color: #E3E3E3;
+  font-size: 150%;
+}
+#contacts #contactsList .contact .contact__text p {
+  padding: 0;
+  margin: 0;
+  font-family: osRegular, "Nunito", sans-serif;
+  color: #E3E3E3;
+  font-size: 125%;
 }
 
 #chat {

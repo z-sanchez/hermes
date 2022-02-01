@@ -18,9 +18,11 @@ class ChatApp extends React.Component {
   }
 
   componentDidMount() {
+    //set up chat app opening
     document.querySelector("#root").style.backgroundImage = "none";
     this.bottomChatRef.current.scrollIntoView({ behavior: "smooth" });
 
+    //access database and fill messages in state
     const db = this.props.firebase.firestore();
     this.collectionRef = db.collection("messages");
     this.queryRef.current = db
@@ -44,12 +46,15 @@ class ChatApp extends React.Component {
   }
 
   componentWillUnmount() {
-    this.getMessages();
+    this.getMessages(); //unsubscribe to database
+
+    //switch background
     document.querySelector("#root").style.backgroundImage =
       "url(http://localhost:3000/static/media/background-dark.b8e12852bbefc8a56091.svg)";
   }
 
   componentDidUpdate() {
+    //scroll to recent message
     this.bottomChatRef.current.scrollIntoView({ behavior: "smooth" });
   }
 
