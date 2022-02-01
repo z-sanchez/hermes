@@ -4,9 +4,12 @@ import ChatApp from "./ChatApp";
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.4/firebase-app.js";
+
 
 import googleLogo from "../images/googleLogo.svg";
+
+//setup context for database stuff
+
 
 
 // Initialize Firebase

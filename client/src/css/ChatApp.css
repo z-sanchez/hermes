@@ -105,6 +105,9 @@
 #contacts #buttonBar #addButton:hover {
   background-color: #9430EB;
 }
+#contacts #contactsList::-webkit-scrollbar {
+  display: none;
+}
 #contacts #contactsList {
   display: flex;
   flex-flow: column;
@@ -115,16 +118,24 @@
   color: #E3E3E3;
   width: 100%;
   height: 90%;
+  max-height: 772px;
   border-radius: 2vh 2vh 0 0;
   justify-content: flex-start;
+  overflow-y: scroll;
 }
 #contacts #contactsList #noContacts {
   position: relative;
   top: 50%;
 }
+#contacts #contactsList .contact:hover {
+  background-color: #2e343a;
+}
 #contacts #contactsList .contact--active {
   background-color: #583E79;
   border-radius: 2vh 2vh 0 0;
+}
+#contacts #contactsList .contact--active:hover {
+  background-color: #583E79;
 }
 #contacts #contactsList .contact {
   display: flex;
@@ -150,11 +161,13 @@
   margin-right: 3%;
   height: 95%;
 }
-#contacts #contactsList .contact img {
+#contacts #contactsList .contact .contactImage--border {
   width: 15%;
   margin-right: 3%;
   height: 50%;
   border-radius: 50%;
+  background-position: center;
+  background-size: cover;
 }
 #contacts #contactsList .contact .contact__text {
   width: 72%;

@@ -5,6 +5,10 @@ import ContactList from "./ContactList";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
+
+//pass database and currentUser data
+//add state for current user
+
 class ChatApp extends React.Component {
   constructor(props) {
     super(props);
