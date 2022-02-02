@@ -1,10 +1,14 @@
 import React from "react";
 import Contact from "./Contact";
+import DatabaseContext from "./databaseContext";
+
 
 //getContactList user codes
 
 
 class ContactList extends React.Component {
+    static contextType = DatabaseContext;
+
     constructor(props) {
         super(props);
         this.state = {

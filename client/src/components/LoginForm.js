@@ -1,16 +1,12 @@
 import React, { useState, useEffect } from "react";
 import ChatApp from "./ChatApp";
+import DatabaseContext from "./databaseContext";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
-
 import googleLogo from "../images/googleLogo.svg";
-
-//setup context for database stuff
-
-
 
 // Initialize Firebase
 firebase.initializeApp({
@@ -23,8 +19,8 @@ firebase.initializeApp({
   measurementId: "G-3BQ9HJQMLE",
 });
 
-function LoginForm() {
 
+function LoginForm() {
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(() => firebase.auth.currentUser);
 
@@ -88,7 +84,19 @@ function LoginForm() {
     );
   };
 
-  return user ? (<ChatApp firebase={firebase} signOut={signOut} /> ): (getLogin());
+  if (user) {
+    let contextData = {
+      firebase: firebase,
+      uid: user._delegate.uid,
+    };
+    return (
+      <DatabaseContext.Provider value={contextData}>
+        <ChatApp signOut={signOut} />
+      </DatabaseContext.Provider>
+    );
+  } else {
+    return getLogin();
+  }
 }
 
-export default LoginForm;
+export {LoginForm}

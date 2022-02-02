@@ -1,20 +1,22 @@
 import React from "react";
 import Clock from "./Clock";
 import ContactList from "./ContactList";
+import DatabaseContext from "./databaseContext";
 
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
 
-//pass database and currentUser data
-//add state for current user
 
 class ChatApp extends React.Component {
+  static contextType = DatabaseContext;
+
   constructor(props) {
     super(props);
     this.bottomChatRef = React.createRef();
     this.queryRef = React.createRef();
     this.collectionRef = React.createRef();
+
     this.state = {
       messages: [],
       collection: null,
@@ -26,8 +28,9 @@ class ChatApp extends React.Component {
     document.querySelector("#root").style.backgroundImage = "none";
     this.bottomChatRef.current.scrollIntoView({ behavior: "smooth" });
 
+
     //access database and fill messages in state
-    const db = this.props.firebase.firestore();
+    const db = this.context.firebase.firestore();
     this.collectionRef = db.collection("messages");
     this.queryRef.current = db
       .collection("messages")
@@ -38,7 +41,6 @@ class ChatApp extends React.Component {
         ...doc.data(),
         id: doc.id,
       }));
-
 
       if (this.queryRef.current) {
         this.setState({
