@@ -6,8 +6,6 @@ import DatabaseContext from "./databaseContext";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
-
-
 class ChatApp extends React.Component {
   static contextType = DatabaseContext;
 
@@ -28,11 +26,9 @@ class ChatApp extends React.Component {
     document.querySelector("#root").style.backgroundImage = "none";
     this.bottomChatRef.current.scrollIntoView({ behavior: "smooth" });
 
-
     //access database and fill messages in state
-    const db = this.context.firebase.firestore();
-    this.collectionRef = db.collection("messages");
-    this.queryRef.current = db
+    this.collectionRef = this.context.database.collection("messages");
+    this.queryRef.current = this.context.database
       .collection("messages")
       .orderBy("createdAt", "desc")
       .limit(10);
@@ -71,7 +67,7 @@ class ChatApp extends React.Component {
     if (message) {
       query.add({
         text: message,
-        createdAt: this.props.firebase.firestore.FieldValue.serverTimestamp(),
+        createdAt: this.context.firebase.firestore.FieldValue.serverTimestamp(),
         received: false,
       });
     }

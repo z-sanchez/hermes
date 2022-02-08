@@ -4,7 +4,7 @@ import DatabaseContext from "./databaseContext";
 
 import firebase from "firebase/compat/app";
 import "firebase/compat/auth";
-import "firebase/compat/firestore";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 import googleLogo from "../images/googleLogo.svg";
 
@@ -18,7 +18,6 @@ firebase.initializeApp({
   appId: "1:19858880682:web:ac908d6516a297dc58f8d3",
   measurementId: "G-3BQ9HJQMLE",
 });
-
 
 function LoginForm() {
   const [initializing, setInitializing] = useState(true);
@@ -85,10 +84,29 @@ function LoginForm() {
   };
 
   if (user) {
+    //create database to put into context
+    let db = firebase.firestore();
+
     let contextData = {
       firebase: firebase,
       uid: user._delegate.uid,
+      database: db,
     };
+
+    //create a doc reference to users name in database
+    const docRef = doc(db, "users", contextData.uid);
+
+    async function docSnap() {
+      const doc = await getDoc(docRef);
+      if (!doc.exists()) { //if user does not exist in database, add them in
+        await setDoc(docRef, {
+          name: user._delegate.email,
+        });
+      }
+    }
+
+    docSnap();
+
     return (
       <DatabaseContext.Provider value={contextData}>
         <ChatApp signOut={signOut} />
@@ -99,4 +117,4 @@ function LoginForm() {
   }
 }
 
-export {LoginForm}
+export { LoginForm };
