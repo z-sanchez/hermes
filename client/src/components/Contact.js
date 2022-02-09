@@ -1,5 +1,5 @@
 import React from "react";
-import Darth from "../images/darth.jpg";
+// import Darth from "../images/darth.jpg";
 import DatabaseContext from "./databaseContext";
 
 //get user data and push to state
@@ -17,15 +17,15 @@ class Contact extends React.Component {
 
   componentDidMount() {
     document.getElementById(
-      "darthContact"
-    ).style.backgroundImage = `url( ${Darth} )`;
+        this.props.contactData.uid
+    ).style.backgroundImage = `url( ${this.props.contactData.profilePic})`;
   }
 
   render() {
     return (
       <div className="contact contact--active">
         <div className="contact__activeBar--lit" />
-        <div className="contactImage--border" id="darthContact" />
+        <div className="contactImage--border" id={this.props.contactData.uid} />
         <div className="contact__text">
           <h1>Darth Vader</h1>
           <p>

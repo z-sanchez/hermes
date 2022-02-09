@@ -1,10 +1,12 @@
 import React from "react";
 import Clock from "./Clock";
 import ContactList from "./ContactList";
+import AddButton from "./AddButton";
 import DatabaseContext from "./databaseContext";
 
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+
 
 class ChatApp extends React.Component {
   static contextType = DatabaseContext;
@@ -126,9 +128,7 @@ class ChatApp extends React.Component {
         <div id="contacts">
           <div id="buttonBar">
             <input type="search" id="searchBar" placeholder="Search ..." />
-            <button id="addButton" className="buttons">
-              Add
-            </button>
+            <AddButton />
           </div>
           <ContactList />
         </div>
