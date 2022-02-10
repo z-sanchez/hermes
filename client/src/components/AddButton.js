@@ -8,7 +8,6 @@ class AddButton extends React.Component {
 
   constructor(props) {
     super(props);
-
     this.contactListRef = React.createRef();
   }
 
@@ -33,4 +32,3 @@ class AddButton extends React.Component {
   }
 }
 
-export default AddButton;

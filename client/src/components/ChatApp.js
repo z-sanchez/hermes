@@ -1,7 +1,6 @@
 import React from "react";
 import Clock from "./Clock";
 import ContactList from "./ContactList";
-import AddButton from "./AddButton";
 import DatabaseContext from "./databaseContext";
 
 import "firebase/compat/auth";
@@ -20,6 +19,7 @@ class ChatApp extends React.Component {
     this.state = {
       messages: [],
       collection: null,
+      adding: false,
     };
   }
 
@@ -77,6 +77,13 @@ class ChatApp extends React.Component {
     document.getElementById("message").value = "";
   };
 
+  setStateAdding = () => {
+    this.setState({
+      adding: !this.state.adding,
+    });
+
+  }
+
   renderMessages() {
     let lastReceivedIndex = false,
       lastSentIndex = false;
@@ -128,9 +135,11 @@ class ChatApp extends React.Component {
         <div id="contacts">
           <div id="buttonBar">
             <input type="search" id="searchBar" placeholder="Search ..." />
-            <AddButton />
+            <button id="addButton" className="buttons" onClick={this.setStateAdding}>
+              Add
+            </button>
           </div>
-          <ContactList />
+          <ContactList adding={this.state.adding} />
         </div>
         <div id="chat">
           <div id="receiver">
