@@ -56,28 +56,18 @@ class ContactList extends React.Component {
   }
 
   renderContacts() {
-    if (this.props.adding) {
-      return this.state.users.map((contact) => {
-        return (
-            <Contact
-                key={uniqid()}
-                adding={this.props.adding}
-                contactData={contact}
-            />
-        );
-      });
-    }
-    else {
-      return this.state.contacts.map((contact) => {
-        return (
-            <Contact
-                key={uniqid()}
-                adding={this.props.adding}
-                contactData={contact}
-            />
-        );
-      });
-    }
+    let contactsToRender = [];
+    this.props.adding ? contactsToRender = this.state.users : contactsToRender = this.state.contacts;
+
+    return contactsToRender.map((contact) => {
+      return (
+          <Contact
+              key={uniqid()}
+              adding={this.props.adding}
+              contactData={contact}
+          />
+      );
+    });
   }
 
   render() {
