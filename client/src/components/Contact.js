@@ -1,5 +1,6 @@
 import React from "react";
 import DatabaseContext from "./databaseContext";
+import { doc, getDoc, setDoc } from "firebase/firestore";
 
 class Contact extends React.Component {
   static contextType = DatabaseContext;
@@ -16,29 +17,71 @@ class Contact extends React.Component {
   }
 
   updateCurrentContact = () => {
-      this.props.currentContact.updateContact("3");
-  }
+    this.props.currentContact.updateContact(this.props.contactData.uid);
+  };
+
+  addContact = async () => {
+    let collection = doc(
+      this.context.database,
+      this.context.uid,
+      this.props.contactData.name
+    );
+
+    await setDoc(collection, {
+      name: this.props.contactData.name,
+      profilePic:
+        "https://www.indiewire.com/wp-content/uploads/2020/10/HUC2-018995_R.jpg?resize=800,534",
+      uid: this.props.contactData.uid,
+    });
+  };
+
   render() {
     if (this.props.adding === false) {
-      return (
-        <div className="contact contact--active" onClick={this.updateCurrentContact}>
-          <div className="contact__activeBar--lit" />
+      if (
+        this.props.currentContact.currentContact === this.props.contactData.uid
+      ) {
+        return (
           <div
-            className="contactImage--border"
-            id={this.props.contactData.uid}
-          />
-          <div className="contact__text">
-            <h1>Darth Vader</h1>
-            <p>
-              Thanks for having me man!Thanks for having me man! Thanks for
-              having me man! Thanks for having me man! Thanks for having me man!{" "}
-            </p>
+            className="contact contact--active"
+            onClick={this.updateCurrentContact}
+          >
+            <div className="contact__activeBar--lit" />
+            <div
+              className="contactImage--border"
+              id={this.props.contactData.uid}
+            />
+            <div className="contact__text">
+              <h1>Darth Vader</h1>
+              <p>
+                Thanks for having me man!Thanks for having me man! Thanks for
+                having me man! Thanks for having me man! Thanks for having me
+                man!{" "}
+              </p>
+            </div>
           </div>
-        </div>
-      );
+        );
+      } else {
+        return (
+          <div className="contact" onClick={this.updateCurrentContact}>
+            <div className="contact__activeBar" />
+            <div
+              className="contactImage--border"
+              id={this.props.contactData.uid}
+            />
+            <div className="contact__text">
+              <h1>Darth Vader</h1>
+              <p>
+                Thanks for having me man!Thanks for having me man! Thanks for
+                having me man! Thanks for having me man! Thanks for having me
+                man!{" "}
+              </p>
+            </div>
+          </div>
+        );
+      }
     } else {
       return (
-        <div className="contact">
+        <div className="contact" onClick={this.addContact}>
           <div className="contact__activeBar" />
           <div
             className="contactImage--border"

@@ -21,6 +21,11 @@ class ContactList extends React.Component {
     this.getUsers();
   }
 
+  componentWillUnmount() {
+    this.getContactsQuery();
+    this.getUsersQuery();
+  }
+
   getContacts = () => {
     //grabs all user contacts from database
     let contacts = this.context.database.collection(this.context.uid);
