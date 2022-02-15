@@ -101,6 +101,8 @@ function LoginForm() {
       if (!doc.exists()) { //if user does not exist in database, add them in
         await setDoc(docRef, {
           name: user._delegate.email,
+          profilePic: "https://www.indiewire.com/wp-content/uploads/2020/10/HUC2-018995_R.jpg?resize=800,534",
+          uid: user._delegate.uid,
         });
       }
     }

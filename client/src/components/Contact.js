@@ -1,11 +1,5 @@
 import React from "react";
-// import Darth from "../images/darth.jpg";
 import DatabaseContext from "./databaseContext";
-
-//get user data and push to state
-//active or not
-//mount contact image
-//get last text
 
 class Contact extends React.Component {
   static contextType = DatabaseContext;
@@ -15,37 +9,45 @@ class Contact extends React.Component {
     this.state = {};
   }
 
-  // componentDidMount() {
-  //   document.getElementById(
-  //       this.props.contactData.uid
-  //   ).style.backgroundImage = `url( ${this.props.contactData.profilePic})`;
-  // }
+  componentDidMount() {
+    document.getElementById(
+      this.props.contactData.uid
+    ).style.backgroundImage = `url( ${this.props.contactData.profilePic})`;
+  }
 
+  updateCurrentContact = () => {
+      this.props.currentContact.updateContact("3");
+  }
   render() {
     if (this.props.adding === false) {
       return (
-          <div className="contact contact--active">
-            <div className="contact__activeBar--lit"/>
-            <div className="contactImage--border" id={this.props.contactData.uid}/>
-            <div className="contact__text">
-              <h1>Darth Vader</h1>
-              <p>
-                Thanks for having me man!Thanks for having me man! Thanks for having
-                me man! Thanks for having me man! Thanks for having me man!{" "}
-              </p>
-            </div>
+        <div className="contact contact--active" onClick={this.updateCurrentContact}>
+          <div className="contact__activeBar--lit" />
+          <div
+            className="contactImage--border"
+            id={this.props.contactData.uid}
+          />
+          <div className="contact__text">
+            <h1>Darth Vader</h1>
+            <p>
+              Thanks for having me man!Thanks for having me man! Thanks for
+              having me man! Thanks for having me man! Thanks for having me man!{" "}
+            </p>
           </div>
+        </div>
       );
-    }
-    else {
+    } else {
       return (
-          <div className="contact contact--active">
-            <div className="contact__activeBar--lit"/>
-            <div className="contactImage--border" /*id={this.props.contactData.uid}*//>
-            <div className="contact__text">
-              <h1>{this.props.contactData.name}</h1>
-            </div>
+        <div className="contact">
+          <div className="contact__activeBar" />
+          <div
+            className="contactImage--border"
+            id={this.props.contactData.uid}
+          />
+          <div className="contact__text contact__text--name">
+            <h1>{this.props.contactData.name}</h1>
           </div>
+        </div>
       );
     }
   }

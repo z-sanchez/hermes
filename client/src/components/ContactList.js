@@ -65,6 +65,7 @@ class ContactList extends React.Component {
               key={uniqid()}
               adding={this.props.adding}
               contactData={contact}
+              currentContact={this.props.currentContact}
           />
       );
     });

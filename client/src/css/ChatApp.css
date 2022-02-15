@@ -188,6 +188,12 @@
   color: #E3E3E3;
   font-size: 125%;
 }
+#contacts #contactsList .contact .contact__text--name {
+  height: 25%;
+}
+#contacts #contactsList .contact .contact__text--name h1 {
+  text-align: center;
+}
 
 #chat {
   display: flex;
