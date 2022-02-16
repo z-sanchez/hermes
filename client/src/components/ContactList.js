@@ -65,6 +65,8 @@ class ContactList extends React.Component {
     this.props.adding ? contactsToRender = this.state.users : contactsToRender = this.state.contacts;
 
     return contactsToRender.map((contact) => {
+      if (contact.uid === this.context.uid) return null;
+
       return (
           <Contact
               key={uniqid()}

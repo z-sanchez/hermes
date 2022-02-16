@@ -17,22 +17,29 @@ class Contact extends React.Component {
   }
 
   updateCurrentContact = () => {
-    this.props.currentContact.updateContact(this.props.contactData.uid);
+    this.props.currentContact.updateContact(
+      this.props.contactData.uid,
+      this.props.contactData.name
+    );
   };
 
   addContact = async () => {
-    let collection = doc(
+    const collection = doc(
       this.context.database,
       this.context.uid,
-      this.props.contactData.name
+      this.props.contactData.uid
     );
 
-    await setDoc(collection, {
-      name: this.props.contactData.name,
-      profilePic:
-        "https://www.indiewire.com/wp-content/uploads/2020/10/HUC2-018995_R.jpg?resize=800,534",
-      uid: this.props.contactData.uid,
-    });
+    const document = await getDoc(collection);
+
+    if (!document.exists()) {
+      await setDoc(collection, {
+        name: this.props.contactData.name,
+        profilePic:
+            "https://www.indiewire.com/wp-content/uploads/2020/10/HUC2-018995_R.jpg?resize=800,534",
+        uid: this.props.contactData.uid,
+      });
+    }
   };
 
   render() {
@@ -51,12 +58,7 @@ class Contact extends React.Component {
               id={this.props.contactData.uid}
             />
             <div className="contact__text">
-              <h1>Darth Vader</h1>
-              <p>
-                Thanks for having me man!Thanks for having me man! Thanks for
-                having me man! Thanks for having me man! Thanks for having me
-                man!{" "}
-              </p>
+              <h1>{this.props.contactData.name}</h1>
             </div>
           </div>
         );
@@ -69,12 +71,7 @@ class Contact extends React.Component {
               id={this.props.contactData.uid}
             />
             <div className="contact__text">
-              <h1>Darth Vader</h1>
-              <p>
-                Thanks for having me man!Thanks for having me man! Thanks for
-                having me man! Thanks for having me man! Thanks for having me
-                man!{" "}
-              </p>
+              <h1>{this.props.contactData.name}</h1>
             </div>
           </div>
         );
