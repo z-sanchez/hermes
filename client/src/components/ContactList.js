@@ -12,6 +12,7 @@ class ContactList extends React.Component {
     super(props);
     this.state = {
       contacts: null,
+      adding: false,
       users: null,
     };
   }
@@ -41,7 +42,7 @@ class ContactList extends React.Component {
         });
       }
     });
-  }
+  };
 
   getUsers = () => {
     //grabs all user contacts from database
@@ -58,37 +59,80 @@ class ContactList extends React.Component {
         });
       }
     });
-  }
+  };
+
+  setStateAdding = () => {
+    this.setState({
+      adding: !this.state.adding,
+    });
+  };
 
   renderContacts() {
     let contactsToRender = [];
-    this.props.adding ? contactsToRender = this.state.users : contactsToRender = this.state.contacts;
+    this.state.adding
+      ? (contactsToRender = this.state.users)
+      : (contactsToRender = this.state.contacts);
 
     return contactsToRender.map((contact) => {
       if (contact.uid === this.context.uid) return null;
 
       return (
-          <Contact
-              key={uniqid()}
-              adding={this.props.adding}
-              contactData={contact}
-              currentContact={this.props.currentContact}
-          />
+        <Contact
+          key={uniqid()}
+          adding={this.state.adding}
+          contactData={contact}
+          currentContact={this.props.currentContact}
+        />
       );
     });
   }
 
   render() {
+    let contactList;
+
     if (this.state.contacts !== null) {
-      return <div id="contactsList">{this.renderContacts()}</div>;
+      contactList = <div id="contactsList">{this.renderContacts()}</div>;
     } else {
-      return (
+      contactList = (
         <div id="contactsList">
           <p id="noContacts">No Contacts</p>
         </div>
       );
     }
+
+    return (
+      <div id="contacts">
+        <div id="buttonBar">
+          <input type="search" id="searchBar" placeholder="Search ..." />
+          <button
+            id="addButton"
+            className="buttons"
+            onClick={this.setStateAdding}
+          >
+            Add
+          </button>
+        </div>
+        {contactList}
+      </div>
+    );
   }
 }
 
 export default ContactList;
+
+// <div id="contacts">
+//   <div id="buttonBar">
+//     <input type="search" id="searchBar" placeholder="Search ..."/>
+//     <button
+//         id="addButton"
+//         className="buttons"
+//         onClick={this.setStateAdding}
+//     >
+//       Add
+//     </button>
+//   </div>
+//   <ContactList
+//       adding={this.state.adding}
+//       currentContact={currentContact}
+//   />
+// </div>

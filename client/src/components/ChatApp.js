@@ -19,7 +19,6 @@ class ChatApp extends React.Component {
         this.state = {
             messages: [],
             collection: null,
-            adding: false,
             currentContact: null,
             currentContactName: null,
         };
@@ -91,12 +90,6 @@ class ChatApp extends React.Component {
         document.getElementById("message").value = "";
     };
 
-    setStateAdding = () => {
-        this.setState({
-            adding: !this.state.adding,
-        });
-    };
-
     getConversationID(contactUID) {
         let user1 = false,
             user2 = false,
@@ -166,22 +159,9 @@ class ChatApp extends React.Component {
                     <h1 onClick={this.props.signOut}>HERMES</h1>
                     <Clock/>
                 </div>
-                <div id="contacts">
-                    <div id="buttonBar">
-                        <input type="search" id="searchBar" placeholder="Search ..."/>
-                        <button
-                            id="addButton"
-                            className="buttons"
-                            onClick={this.setStateAdding}
-                        >
-                            Add
-                        </button>
-                    </div>
-                    <ContactList
-                        adding={this.state.adding}
-                        currentContact={currentContact}
-                    />
-                </div>
+                <ContactList
+                    currentContact={currentContact}
+                />
                 <div id="chat">
                     <div id="receiver">
                         <p>{this.state.currentContactName}</p>
