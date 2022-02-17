@@ -142,7 +142,6 @@
 }
 #contacts #contactsList .contact--active {
   background-color: #583E79;
-  border-radius: 2vh 2vh 0 0;
 }
 #contacts #contactsList .contact--active:hover {
   background-color: #583E79;
@@ -163,7 +162,7 @@
   margin-right: 3%;
   height: 100%;
   background-color: #9430EB;
-  border-radius: 2vh;
+  border-radius: 0 1vh 1vh 0;
 }
 #contacts #contactsList .contact .contact__activeBar {
   justify-self: flex-start;
