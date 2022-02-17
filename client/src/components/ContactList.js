@@ -14,6 +14,7 @@ class ContactList extends React.Component {
       contacts: null,
       adding: false,
       users: null,
+      searchValue: null,
     };
   }
 
@@ -76,6 +77,10 @@ class ContactList extends React.Component {
     return contactsToRender.map((contact) => {
       if (contact.uid === this.context.uid) return null;
 
+      if (this.state.searchValue !== null) {
+        if (!contact.name.includes(this.state.searchValue)) return null;
+      }
+
       return (
         <Contact
           key={uniqid()}
@@ -103,7 +108,12 @@ class ContactList extends React.Component {
     return (
       <div id="contacts">
         <div id="buttonBar">
-          <input type="search" id="searchBar" placeholder="Search ..." />
+          <input type="search" id="searchBar" placeholder="Search ..." onChange={(e) => {
+            this.setState({
+              searchValue: e.target.value,
+            })
+          }}/>
+
           <button
             id="addButton"
             className="buttons"
@@ -120,19 +130,3 @@ class ContactList extends React.Component {
 
 export default ContactList;
 
-// <div id="contacts">
-//   <div id="buttonBar">
-//     <input type="search" id="searchBar" placeholder="Search ..."/>
-//     <button
-//         id="addButton"
-//         className="buttons"
-//         onClick={this.setStateAdding}
-//     >
-//       Add
-//     </button>
-//   </div>
-//   <ContactList
-//       adding={this.state.adding}
-//       currentContact={currentContact}
-//   />
-// </div>
