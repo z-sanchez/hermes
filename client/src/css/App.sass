@@ -66,7 +66,7 @@ body
 .wrapper
   @include centerAligned()
   position: relative
-  height: 80vh
+  top: 20%
   left: 22vw
 
 #logo
@@ -126,12 +126,12 @@ a
   border-radius: 0 0 1vh 1vh
 
   img
-    width: 2.8vw
+    width: 10%
     margin-right: 1vw
 
   h1
     @include fontStyle($color: $white-theme, $font: osRegular)
-    font-size: 3vh
+    font-size: 115%
     margin-left: 1vw
 
 
@@ -167,8 +167,30 @@ a
 
 
 
-@media screen and (max-height: 1000px)
 
+@media screen and (max-width: 1200px)
+  body
+    width: 736px
+    height: 967px
+
+  #logo
+    bottom: 125px
+
+
+  .wrapper
+    position: absolute
+    left: 390px
+    top: 175px
+    width: 420px
+    height: 440px
+
+@media screen and (max-height: 800px)
+
+  #logo
+    margin-bottom: 32px
+
+  #loginForm
+    bottom: 100px
   #loginForm__signUp
     margin-bottom: 16.36px
 
@@ -192,35 +214,43 @@ a
 
 /* Portrait */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px)
-  .body
+  #root
+    background-position: 30% 0
+
+
+  body
+    height: 100vh
+    width: 100vh
+
+  .wrapper
+    @include centerAligned()
+    position: relative
+    width: 100vw
     left: 0
 
-
   #logo
-    position: relative
-    bottom: 150px
-    font-size: 5.8rem
-    color: $white-theme
+    font-size: 500%
 
   #loginForm
-    height: 20%
-    width: 300px
-    padding: 10px 25px 0 25px
+    width: 72%
+    height: 150px
+    padding: 1vh 2.5vw 0 2.5vw
+
+  #loginForm__title
+    font-size: 200%
+
 
   #loginForm__signUp
-    margin-bottom: 16.36px
-
-
+    font-size: 90%
+    bottom: 6%
 
   #loginForm__loginButton
-    width: 350px
-    height: 60px
-
-    img
-      width: 40px
-
-
-
-
-
+    font-size: 110%
+    width: 100%
+    padding: 0 2.5vw 0 2.5vw
+    height: 40%
+    align-self: center
+    background: radial-gradient($purple-theme, #b057ff 170%)
+    border-style: none
+    border-radius: 0 0 1vh 1vh
 
