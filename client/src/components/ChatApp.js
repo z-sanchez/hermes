@@ -153,6 +153,9 @@ class ChatApp extends React.Component {
             currentContact: this.state.currentContact,
         };
 
+        let contactHeader = this.state.currentContactName;
+        if (contactHeader === null) contactHeader = "No Contact";
+
         return (
             <div id="appGrid">
                 <div id="header">
@@ -164,7 +167,7 @@ class ChatApp extends React.Component {
                 />
                 <div id="chat">
                     <div id="receiver">
-                        <p>{this.state.currentContactName}</p>
+                        <p>{contactHeader}</p>
                     </div>
                     <div id="chatWindow">
                         {this.renderMessages()}
