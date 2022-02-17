@@ -24,11 +24,9 @@ class Clock extends React.Component {
             minute = today.getMinutes(),
             meridiem = 'AM';
 
-        if (hour === 12) {
-            hour = 12;
-            meridiem = 'PM';
-        }
-        if (hour > 12) hour = hour - 12;
+        if (hour === 12) hour = 12;
+
+        if (hour > 12) { hour = hour - 12; meridiem = 'PM'; }
 
         minute = minute < 10 ? "0" + minute : minute;
 

@@ -2,8 +2,11 @@ import React from "react";
 import Contact from "./Contact";
 import DatabaseContext from "./databaseContext";
 import uniqid from "uniqid";
+import dropDownArrow from "../images/dropdownArrow.svg";
 
-//getContactList user codes
+function isMobile() {
+  return window.innerWidth < 1400;
+}
 
 class ContactList extends React.Component {
   static contextType = DatabaseContext;
@@ -92,8 +95,41 @@ class ContactList extends React.Component {
     });
   }
 
+  //onClick function to change state to selectContact
+  //onCLick function to change state for mobile adding contact (if contactClicked turn off mobile adding state
+
+
+
+  renderMobileList = () => {
+    if (isMobile()) {
+      return (
+        <div id="receiver">
+          <div className="receiver--background receiverBackground--mobile">
+            <p>{this.props.currentContact.name}</p>
+            <img src={dropDownArrow} id="dropDown" alt="drop down" onClick={this.setStateViewing}/>
+          </div>
+        </div>
+      );
+    } else {
+      return (
+        <div id="receiver">
+          <div className="receiver--background">
+            <p>{this.props.currentContact.name}</p>
+          </div>
+        </div>
+      );
+    }
+  };
+
   render() {
     let contactList;
+
+    //isMobile, if yes add mobile clause to render contactList within receiver--background with arrow and render onCLick
+    //if isMobile and selectContact renderContacts(isMobile) within flex (contact should render fine without styling)
+    //if isMobile and addingContact renderContacts(isMobile) within flex (contact should render fine without styling)
+    if (this.props.mobile) {
+      return this.renderMobileList();
+    }
 
     if (this.state.contacts !== null) {
       contactList = <div id="contactsList">{this.renderContacts()}</div>;
@@ -108,11 +144,16 @@ class ContactList extends React.Component {
     return (
       <div id="contacts">
         <div id="buttonBar">
-          <input type="search" id="searchBar" placeholder="Search ..." onChange={(e) => {
-            this.setState({
-              searchValue: e.target.value,
-            })
-          }}/>
+          <input
+            type="search"
+            id="searchBar"
+            placeholder="Search ..."
+            onChange={(e) => {
+              this.setState({
+                searchValue: e.target.value,
+              });
+            }}
+          />
 
           <button
             id="addButton"
@@ -129,4 +170,3 @@ class ContactList extends React.Component {
 }
 
 export default ContactList;
-

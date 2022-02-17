@@ -237,19 +237,32 @@ $logo-text: arista, "Nunito", sans-serif
 
   #receiver
     @include centerAligned(column)
-    width: 100%
+    width: 40%
     height: 10%
 
-    p
-      @include spaceKiller
-      @include fontStyle($white-theme, osSemibold)
+    .receiver--background
+      @include centerAligned(row)
       background-color: $purple-theme-faded
       border: none
       border-radius: 18px
       padding: .8vh 10%
-      font-size: 130%
-      text-align: center
-      color: $white-theme
+      width: 100%
+
+      p
+        @include centerAligned(row)
+        @include spaceKiller
+        @include fontStyle($white-theme, osSemibold)
+        font-size: 130%
+        width: 90%
+        text-align: center
+        color: $white-theme
+
+      img
+        width: 8%
+        position: relative
+        left: 5%
+
+
 
   #chatWindow
     @include centerAligned(column)
@@ -314,18 +327,6 @@ $logo-text: arista, "Nunito", sans-serif
 
 
 
-@media screen and (max-height: 700px)
-  #appGrid
-    grid-template-rows: 70px auto
-    row-gap: 1.8vh
-
-  #contacts, #chat
-    height: 616.42px
-
-    #chatWindow
-      height: 70%
-
-
 @media screen and (max-width: 1400px)
   #appGrid
     grid-template-columns: auto
@@ -336,5 +337,43 @@ $logo-text: arista, "Nunito", sans-serif
     grid-column-start: 1
     grid-column-end: 3
 
+    #receiver
+      .receiver--background
+        p
+          font-size: 1.5vw
+
+
+
   #contacts
     display: none
+
+
+@media screen and (max-width: 1000px)
+  #chat
+    #receiver
+      width: 351px
+
+      .receiver--background
+        p
+          font-size: 20px
+
+
+/* ----------- iPhone X ----------- */
+
+/* Portrait and Landscape */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3)
+
+
+/* Portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px)
+
+  #chat
+    #receiver
+      width: 60%
+      .receiver--background
+        p
+          font-size: 15px
+
+
+
+
