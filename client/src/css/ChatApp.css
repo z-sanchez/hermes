@@ -458,6 +458,11 @@
 }
 
 @media screen and (max-width: 1400px) {
+  body {
+    height: 100vh;
+    width: 100vh;
+  }
+
   #appGrid {
     grid-template-columns: auto;
   }
@@ -488,6 +493,11 @@
   }
 }
 @media screen and (max-width: 1000px) {
+  body {
+    height: 100vh;
+    width: 100vh;
+  }
+
   #chat #chatWindow {
     margin-top: 20%;
   }
@@ -510,6 +520,11 @@
 /* Portrait and Landscape */
 /* Portrait */
 @media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
+  body {
+    height: 100vh;
+    width: 100vh;
+  }
+
   #chat #chatWindow {
     margin-top: 20%;
   }

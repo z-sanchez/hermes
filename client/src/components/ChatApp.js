@@ -59,7 +59,7 @@ class ChatApp extends React.Component {
       return null;
     };
 
-    document.querySelector("#root").style.backgroundImage = "none";
+    document.querySelector("#root").style.background = "#282D34";
     this.bottomChatRef.current.scrollIntoView({ behavior: "smooth" });
   }
 
@@ -67,7 +67,7 @@ class ChatApp extends React.Component {
     this.getMessages(); //unsubscribe to database
 
     //switch background
-    document.querySelector("#root").style.backgroundImage =
+    document.querySelector("#root").style.background =
       "url(http://localhost:3000/static/media/background-dark.b8e12852bbefc8a56091.svg)";
   }
 
