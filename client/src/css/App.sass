@@ -178,13 +178,15 @@ a
 
 
   .wrapper
-    position: absolute
-    left: 390px
-    top: 175px
-    width: 420px
-    height: 440px
+    @include centerAligned()
+    position: relative
+    width: 100vw
+    left: 0
 
 @media screen and (max-height: 800px)
+  .wrapper
+    width: 809px
+
 
   #logo
     margin-bottom: 32px

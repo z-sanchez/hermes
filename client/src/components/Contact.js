@@ -2,6 +2,10 @@ import React from "react";
 import DatabaseContext from "./databaseContext";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 
+function isMobile() {
+  return window.innerWidth < 1400;
+}
+
 class Contact extends React.Component {
   static contextType = DatabaseContext;
 
@@ -21,6 +25,8 @@ class Contact extends React.Component {
       this.props.contactData.uid,
       this.props.contactData.name
     );
+
+    if (isMobile()) this.props.toggleList();
   };
 
   addContact = async () => {

@@ -153,10 +153,8 @@ class ChatApp extends React.Component {
     let currentContact = {
       updateContact: this.updateCurrentContact,
       currentContact: this.state.currentContact,
+      currentContactName: this.state.currentContactName,
     };
-
-    let contactHeader = this.state.currentContactName;
-    if (contactHeader === null) contactHeader = "No Contact";
 
     //add img element to ContactList, render it if mobile otherwise just contactHeader
     // line 167 and 174 will do a check to see if screen is mobile, both will render. 167 with a normal component
