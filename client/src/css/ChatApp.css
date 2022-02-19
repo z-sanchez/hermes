@@ -352,110 +352,6 @@
   font-size: 2.5vh;
   min-width: 63px;
 }
-#chat #receiver--mobile {
-  height: fit-content;
-  justify-content: flex-start;
-  position: fixed;
-}
-#chat #receiver--mobile .receiverBackground--mobile {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  justify-content: flex-start;
-  height: 100%;
-  background: none;
-}
-#chat #receiver--mobile .receiverBackground--mobile #receiver__header {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  background-color: #583E79;
-  border: none;
-  border-radius: 18px;
-  padding: 0.8vh 10%;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex {
-  display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  justify-content: flex-start;
-  width: 100%;
-  height: 35vh;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact:hover {
-  background-color: #583E79;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact--active:hover {
-  background-color: #583E79;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: center;
-  align-content: center;
-  background-color: #2e343a;
-  height: 100%;
-  width: 100%;
-  justify-content: flex-start;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact .contact__activeBar--lit {
-  justify-self: flex-start;
-  width: 2%;
-  margin-right: 3%;
-  height: 100%;
-  background-color: #9430EB;
-  border-radius: 0 1vh 1vh 0;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact .contact__activeBar {
-  justify-self: flex-start;
-  width: 2%;
-  margin-right: 3%;
-  height: 95%;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact .contactImage--border {
-  width: 15%;
-  margin-right: 3%;
-  height: 50%;
-  border-radius: 50%;
-  background-position: center;
-  background-size: cover;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact .contact__text {
-  width: 72%;
-  height: 25%;
-  text-align: center;
-  overflow: hidden;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact .contact__text h1 {
-  padding: 0;
-  margin: 0;
-  font-family: osSemibold, "Nunito", sans-serif;
-  color: #E3E3E3;
-  font-size: 150%;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact .contact__text p {
-  padding: 0;
-  margin: 0;
-  font-family: osRegular, "Nunito", sans-serif;
-  color: #E3E3E3;
-  font-size: 125%;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact .contact__text--name {
-  height: 25%;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact .contact__text--name h1 {
-  text-align: center;
-}
-#chat #receiver--mobile .receiverBackground--mobile #contactsFlex .contact--active {
-  background-color: #583E79;
-}
 
 @media screen and (max-width: 1400px) {
   body {
@@ -495,7 +391,7 @@
 @media screen and (max-width: 1000px) {
   body {
     height: 100vh;
-    width: 100vh;
+    width: 100vw;
   }
 
   #chat #chatWindow {
@@ -519,29 +415,5 @@
 /* ----------- iPhone X ----------- */
 /* Portrait and Landscape */
 /* Portrait */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
-  body {
-    height: 100vh;
-    width: 100vh;
-  }
-
-  #chat #chatWindow {
-    margin-top: 20%;
-  }
-  #chat #receiver--mobile {
-    width: 60%;
-  }
-  #chat #receiver--mobile .receiverBackground--mobile p {
-    font-size: 15px;
-  }
-  #chat #receiver--mobile .receiverBackground--mobile p #contactsFlex .contact .contact__text {
-    height: 25%;
-    width: 77%;
-  }
-  #chat #receiver--mobile .receiverBackground--mobile p #contactsFlex .contact .contact__text h1 {
-    text-align: center;
-    font-size: 15px;
-  }
-}
 
 /*# sourceMappingURL=ChatApp.css.map */

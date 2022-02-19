@@ -323,92 +323,6 @@ $logo-text: arista, "Nunito", sans-serif
 
 
 
-  #receiver--mobile
-    height: fit-content
-    justify-content: flex-start
-    position: fixed
-
-    .receiverBackground--mobile
-      @include centerAligned(column)
-      justify-content: flex-start
-      height: 100%
-      background: none
-
-      #receiver__header
-        @include centerAligned(row)
-        background-color: $purple-theme-faded
-        border: none
-        border-radius: 18px
-        padding: .8vh 10%
-
-      #contactsFlex
-        @include centerAligned(column)
-        justify-content: flex-start
-        width: 100%
-        height: 35vh
-
-        .contact:hover
-          background-color: $purple-theme-faded
-
-        .contact--active:hover
-          background-color: $purple-theme-faded
-
-        .contact
-          @include centerAligned(row)
-          background-color: #2e343a
-          height: 100%
-          width: 100%
-          justify-content: flex-start
-
-          .contact__activeBar--lit
-            justify-self: flex-start
-            width: 2%
-            margin-right: 3%
-            height: 100%
-            background-color: $purple-theme
-            border-radius: 0 1vh 1vh 0
-
-          .contact__activeBar
-            justify-self: flex-start
-            width: 2%
-            margin-right: 3%
-            height: 95%
-
-          .contactImage--border
-            width: 15%
-            margin-right: 3%
-            height: 50%
-            border-radius: 50%
-            background-position: center
-            background-size: cover
-
-          .contact__text
-            width: 72%
-            height: 25%
-            text-align: center
-            overflow: hidden
-
-            h1
-              @include spaceKiller
-              @include fontStyle($white-theme, osSemibold)
-              font-size: 150%
-
-            p
-              @include spaceKiller
-              @include fontStyle($white-theme, osRegular)
-              font-size: 125%
-
-          .contact__text--name
-            height: 25%
-
-            h1
-              text-align: center
-
-        .contact--active
-          background-color: $purple-theme-faded
-
-
-
 
 
 
@@ -417,6 +331,7 @@ $logo-text: arista, "Nunito", sans-serif
   body
     height: 100vh
     width: 100vh
+
   #appGrid
     grid-template-columns: auto
 
@@ -442,9 +357,6 @@ $logo-text: arista, "Nunito", sans-serif
                 text-align: center
                 font-size: 1.5vw
 
-
-
-
   #contacts
     display: none
 
@@ -452,7 +364,7 @@ $logo-text: arista, "Nunito", sans-serif
 @media screen and (max-width: 1000px)
   body
     height: 100vh
-    width: 100vh
+    width: 100vw
   #chat
     #chatWindow
       margin-top: 20%
@@ -471,6 +383,30 @@ $logo-text: arista, "Nunito", sans-serif
                 font-size: 20px
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ----------- iPhone X ----------- */
 
 /* Portrait and Landscape */
@@ -478,28 +414,116 @@ $logo-text: arista, "Nunito", sans-serif
 
 
 /* Portrait */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px)
+//@media only screen and (min-device-width: 375px) and (max-device-width: 812px)
+//
+//  body
+//    height: 100vh
+//    width: 100vh
+//
+//  #chat
+//    #chatWindow
+//      margin-top: 20%
+//    #receiver--mobile
+//      width: 60%
+//      .receiverBackground--mobile
+//        p
+//          font-size: 15px
+//          #contactsFlex
+//            .contact
+//              .contact__text
+//                height: 25%
+//                width: 77%
+//                h1
+//                  text-align: center
+//                  font-size: 15px
+//
+//
 
-  body
-    height: 100vh
-    width: 100vh
-
-  #chat
-    #chatWindow
-      margin-top: 20%
-    #receiver--mobile
-      width: 60%
-      .receiverBackground--mobile
-        p
-          font-size: 15px
-          #contactsFlex
-            .contact
-              .contact__text
-                height: 25%
-                width: 77%
-                h1
-                  text-align: center
-                  font-size: 15px
 
 
 
+
+ //#receiver--mobile
+  //  height: fit-content
+  //  justify-content: flex-start
+  //  position: fixed
+  //
+  //  .receiverBackground--mobile
+  //    @include centerAligned(column)
+  //    justify-content: flex-start
+  //    height: 100%
+  //    background: none
+  //
+  //    #receiver__header
+  //      @include centerAligned(row)
+  //      background-color: $purple-theme-faded
+  //      border: none
+  //      border-radius: 18px
+  //      padding: .8vh 10%
+  //
+  //    #contactsFlex
+  //      @include centerAligned(column)
+  //      justify-content: flex-start
+  //      width: 100%
+  //      height: 35vh
+  //
+  //      .contact:hover
+  //        background-color: $purple-theme-faded
+  //
+  //      .contact--active:hover
+  //        background-color: $purple-theme-faded
+  //
+  //      .contact
+  //        @include centerAligned(row)
+  //        background-color: #2e343a
+  //        height: 100%
+  //        width: 100%
+  //        justify-content: flex-start
+  //
+  //        .contact__activeBar--lit
+  //          justify-self: flex-start
+  //          width: 2%
+  //          margin-right: 3%
+  //          height: 100%
+  //          background-color: $purple-theme
+  //          border-radius: 0 1vh 1vh 0
+  //
+  //        .contact__activeBar
+  //          justify-self: flex-start
+  //          width: 2%
+  //          margin-right: 3%
+  //          height: 95%
+  //
+  //        .contactImage--border
+  //          width: 15%
+  //          margin-right: 3%
+  //          height: 50%
+  //          border-radius: 50%
+  //          background-position: center
+  //          background-size: cover
+  //
+  //        .contact__text
+  //          width: 72%
+  //          height: 25%
+  //          text-align: center
+  //          overflow: hidden
+  //
+  //          h1
+  //            @include spaceKiller
+  //            @include fontStyle($white-theme, osSemibold)
+  //            font-size: 150%
+  //
+  //          p
+  //            @include spaceKiller
+  //            @include fontStyle($white-theme, osRegular)
+  //            font-size: 125%
+  //
+  //        .contact__text--name
+  //          height: 25%
+  //
+  //          h1
+  //            text-align: center
+  //
+  //      .contact--active
+  //        background-color: $purple-theme-faded
+  //

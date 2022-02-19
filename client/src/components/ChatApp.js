@@ -2,8 +2,6 @@ import React from "react";
 import Clock from "./Clock";
 import ContactList from "./ContactList";
 import DatabaseContext from "./databaseContext";
-import dropDownArrow from "../images/dropdownArrow.svg";
-
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
 
@@ -65,10 +63,6 @@ class ChatApp extends React.Component {
 
   componentWillUnmount() {
     this.getMessages(); //unsubscribe to database
-
-    //switch background
-    document.querySelector("#root").style.background =
-      "url(http://localhost:3000/static/media/background-dark.b8e12852bbefc8a56091.svg)";
   }
 
   componentDidUpdate() {
@@ -155,10 +149,6 @@ class ChatApp extends React.Component {
       currentContact: this.state.currentContact,
       currentContactName: this.state.currentContactName,
     };
-
-    //add img element to ContactList, render it if mobile otherwise just contactHeader
-    // line 167 and 174 will do a check to see if screen is mobile, both will render. 167 with a normal component
-    // and 167 with mobile class. While the other is active the other will not be due to css styling.
 
     return (
       <div id="appGrid">
