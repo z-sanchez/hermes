@@ -131,20 +131,18 @@ class ContactList extends React.Component {
         //render this. Edit classes and ids to display none in media queries.
         // Make proper css adjustments to keep spacing consistent. For contacts change media query to display properly
         return (
-            <div id="receiver--mobile">
-                <div className="receiver--background receiverBackground--mobile">
-                    <div id="receiver__header">
-                        <p>{contactHeader}</p>
-                        <img
-                            src={dropDownArrow}
-                            id="dropDown"
-                            alt="drop down"
-                            onClick={this.toggleList}
-                        />
-                    </div>
-                    <div id="contactsFlex">
-                        {contacts}
-                    </div>
+            <div id="receiver">
+                <div id="receiver__header">
+                    <p>{contactHeader}</p>
+                    <img
+                        src={dropDownArrow}
+                        id="dropDown"
+                        alt="drop down"
+                        onClick={this.toggleList}
+                    />
+                </div>
+                <div id="contactsFlex">
+                    {contacts}
                 </div>
             </div>
         );
