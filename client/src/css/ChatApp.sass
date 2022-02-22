@@ -269,8 +269,11 @@ $logo-text: arista, "Nunito", sans-serif
       position: absolute
       top: 19%
       width: 58%
+      overflow-y: scroll
 
 
+    #contactsFlex::-webkit-scrollbar
+      display: none
 
 
 
@@ -361,21 +364,23 @@ $logo-text: arista, "Nunito", sans-serif
         height: 60%
         padding: 0
         p
-          width: 90%
+          width: 80%
+          font-size: 3.5vw
         img
           display: block
+          width: 2vw
 
       #contactsFlex
         display: block
-        height: 50%
+        height: 30%
 
         .contact:hover
           background-color: $purple-theme-faded
 
         .contact
           @include centerAligned(row)
-          height: 20%
           width: 100%
+          height: 30%
           justify-content: flex-start
           background-color: $background-black-light
 
@@ -404,12 +409,7 @@ $logo-text: arista, "Nunito", sans-serif
             h1
               @include spaceKiller
               @include fontStyle($white-theme, osSemibold)
-              font-size: 150%
-
-            p
-              @include spaceKiller
-              @include fontStyle($white-theme, osRegular)
-              font-size: 125%
+              font-size: 3.5vw
 
 
         .contact--active

@@ -273,6 +273,10 @@
   position: absolute;
   top: 19%;
   width: 58%;
+  overflow-y: scroll;
+}
+#chat #receiver #contactsFlex::-webkit-scrollbar {
+  display: none;
 }
 #chat #chatWindow {
   display: flex;
@@ -390,14 +394,16 @@
     padding: 0;
   }
   #chat #receiver #receiver__header p {
-    width: 90%;
+    width: 80%;
+    font-size: 3.5vw;
   }
   #chat #receiver #receiver__header img {
     display: block;
+    width: 2vw;
   }
   #chat #receiver #contactsFlex {
     display: block;
-    height: 50%;
+    height: 30%;
   }
   #chat #receiver #contactsFlex .contact:hover {
     background-color: #583E79;
@@ -408,8 +414,8 @@
     align-items: center;
     justify-content: center;
     align-content: center;
-    height: 20%;
     width: 100%;
+    height: 30%;
     justify-content: flex-start;
     background-color: #3C434B;
   }
@@ -440,14 +446,7 @@
     margin: 0;
     font-family: osSemibold, "Nunito", sans-serif;
     color: #E3E3E3;
-    font-size: 150%;
-  }
-  #chat #receiver #contactsFlex .contact .contact__text p {
-    padding: 0;
-    margin: 0;
-    font-family: osRegular, "Nunito", sans-serif;
-    color: #E3E3E3;
-    font-size: 125%;
+    font-size: 3.5vw;
   }
   #chat #receiver #contactsFlex .contact--active {
     background-color: #583E79;
