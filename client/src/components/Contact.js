@@ -42,7 +42,7 @@ class Contact extends React.Component {
       await setDoc(collection, {
         name: this.props.contactData.name,
         profilePic:
-            "https://www.indiewire.com/wp-content/uploads/2020/10/HUC2-018995_R.jpg?resize=800,534",
+          "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
         uid: this.props.contactData.uid,
       });
     }

@@ -14,7 +14,7 @@ class ContactList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            contacts: null,
+            contacts: [],
             adding: false,
             users: null,
             searchValue: null,
@@ -59,7 +59,7 @@ class ContactList extends React.Component {
                 id: doc.id,
             }));
 
-            if (contacts) {
+            if (data) {
                 this.setState({
                     contacts: data,
                 });
@@ -76,7 +76,7 @@ class ContactList extends React.Component {
                 id: doc.id,
             }));
 
-            if (contacts) {
+            if (data) {
                 this.setState({
                     users: data,
                 });
@@ -95,6 +95,14 @@ class ContactList extends React.Component {
         this.state.adding
             ? (contactsToRender = this.state.users)
             : (contactsToRender = this.state.contacts);
+
+        if (this.state.adding === false && this.state.contacts.length === 0) {
+            return (
+                <div id="contactsList">
+                    <p id="noContacts">No Contacts</p>
+                </div>
+            );
+        }
 
         return contactsToRender.map((contact) => {
             if (contact.uid === this.context.uid) return null;
@@ -149,20 +157,10 @@ class ContactList extends React.Component {
     };
 
     render() {
-        let contactList;
+        let contactList = <div id="contactsList">{this.renderContacts()}</div>;
 
         if (this.props.mobile) {
             return this.renderMobileList();
-        }
-
-        if (this.state.contacts !== null) {
-            contactList = <div id="contactsList">{this.renderContacts()}</div>;
-        } else {
-            contactList = (
-                <div id="contactsList">
-                    <p id="noContacts">No Contacts</p>
-                </div>
-            );
         }
 
         return (
