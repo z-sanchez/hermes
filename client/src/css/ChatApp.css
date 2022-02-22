@@ -11,9 +11,8 @@
   src: url("../fonts/openSans-semibold.ttf") format("truetype");
 }
 #appGrid {
-  overflow: hidden;
   display: grid;
-  width: 100%;
+  width: 100vw;
   height: 100vh;
   grid-template-columns: 35% auto;
   grid-template-rows: 10% auto;
@@ -271,7 +270,7 @@
 #chat #receiver #contactsFlex {
   display: none;
   position: absolute;
-  top: 19%;
+  top: 19vh;
   width: 58%;
   overflow-y: scroll;
 }
@@ -288,8 +287,7 @@
   align-items: flex-start;
   width: 100%;
   height: 78%;
-  max-height: 670px;
-  overflow: scroll;
+  overflow-y: scroll;
 }
 #chat #chatWindow .receivedMessage {
   font-family: osSemibold, "Nunito", sans-serif;
@@ -385,6 +383,7 @@
     grid-row-end: 4;
     grid-column-start: 1;
     grid-column-end: 3;
+    height: 88vh;
   }
   #chat #receiver {
     width: 65%;
@@ -464,6 +463,11 @@
 }
 /* ----------- iPhone X ----------- */
 /* Portrait and Landscape */
-/* Portrait */
+@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
+  body {
+    height: 100vh;
+    width: 100vw;
+  }
+}
 
 /*# sourceMappingURL=ChatApp.css.map */
