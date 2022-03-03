@@ -115,6 +115,9 @@ class ContactList extends React.Component {
         if (!contact.name.includes(this.state.searchValue)) return null;
       }
 
+      const exist = (addedContact) => addedContact.id === contact.id;
+      let added = this.state.contacts.some(exist);
+
       return (
         <Contact
           key={uniqid()}
@@ -122,6 +125,7 @@ class ContactList extends React.Component {
           contactData={contact}
           currentContact={this.props.currentContact}
           toggleList={this.toggleList}
+          added={added}
         />
       );
     });

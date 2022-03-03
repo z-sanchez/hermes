@@ -83,9 +83,13 @@ class Contact extends React.Component {
         );
       }
     } else {
+      let activeBar = 'contact__activeBar--red';
+
+      if (this.props.added) activeBar = 'contact__activeBar--green';
+
       return (
         <div className="contact" onClick={this.addContact}>
-          <div className="contact__activeBar" />
+          <div className={activeBar} />
           <div
             className="contactImage--border"
             id={this.props.contactData.uid}
