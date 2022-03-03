@@ -175,6 +175,7 @@ class ContactList extends React.Component {
           <input
             type="search"
             id="searchBar"
+            autoComplete="off"
             placeholder="Search ..."
             onChange={(e) => {
               this.setState({

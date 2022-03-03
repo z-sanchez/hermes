@@ -164,7 +164,12 @@ class ChatApp extends React.Component {
             <div ref={this.bottomChatRef} />
           </div>
           <div id="messageBar">
-            <input id="message" placeholder="type a message ..." type="text" />
+            <input
+              autoComplete="off"
+              id="message"
+              placeholder="type a message ..."
+              type="text"
+            />
             <button
               id="sendMessage"
               onClick={this.handleOnSend}
