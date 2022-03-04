@@ -1,106 +1,84 @@
-import React from "react";
+import React, {useContext} from "react";
+import {useEffect} from 'react';
 import DatabaseContext from "./databaseContext";
-import { doc, getDoc, setDoc } from "firebase/firestore";
+import {doc, getDoc, setDoc} from "firebase/firestore";
 
-function isMobile() {
-  return window.innerWidth < 1400;
+function isMobile() { //outsource this
+    return window.innerWidth < 1400;
 }
 
-class Contact extends React.Component {
-  static contextType = DatabaseContext;
+const Contact = (props) => {
+    const context = useContext(DatabaseContext);
 
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
+    //use effect
+    useEffect(() => {
+        document.getElementById(
+            props.contactData.uid
+        ).style.backgroundImage = `url( ${props.contactData.profilePic})`;
+    });
 
-  componentDidMount() {
-    document.getElementById(
-      this.props.contactData.uid
-    ).style.backgroundImage = `url( ${this.props.contactData.profilePic})`;
-  }
+    //updates current contact in ChatApp.js
+    function updateCurrentContact() {
+        props.currentContact.updateContact(
+            props.contactData.uid,
+            props.contactData.name
+        );
 
-  updateCurrentContact = () => {
-    this.props.currentContact.updateContact(
-      this.props.contactData.uid,
-      this.props.contactData.name
-    );
-
-    if (isMobile()) this.props.toggleList();
-  };
-
-  addContact = async () => {
-    const collection = doc(
-      this.context.database,
-      this.context.uid,
-      this.props.contactData.uid
-    );
-
-    const document = await getDoc(collection);
-
-    if (!document.exists()) {
-      await setDoc(collection, {
-        name: this.props.contactData.name,
-        profilePic:
-          "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-        uid: this.props.contactData.uid,
-      });
+        if (isMobile()) props.toggleList(); //make mobile dropdown contactlist vanish once contact selected
     }
-  };
 
-  render() {
-    if (this.props.adding === false) {
-      if (
-        this.props.currentContact.currentContact === this.props.contactData.uid
-      ) {
-        return (
-          <div
-            className="contact contact--active"
-            onClick={this.updateCurrentContact}
-          >
-            <div className="contact__activeBar--lit" />
+    //same process as in LoginFrom.js for entering new user. Move function elsewhere
+    async function addContact() {
+        const collection = doc(
+            context.database,
+            context.uid,
+            props.contactData.uid
+        );
+
+        const document = await getDoc(collection);
+
+        if (!document.exists()) {
+            await setDoc(collection, {
+                name: props.contactData.name,
+                profilePic:
+                    "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
+                uid: props.contactData.uid,
+            });
+        }
+    }
+
+
+    //ui colors and styling specifics.
+    let activeBarLit = 'contact__activeBar', active = 'contact';
+
+    if (
+        props.currentContact.currentContact === props.contactData.uid
+    ) {
+        activeBarLit = 'contact__activeBar--lit';
+        active = 'contact contact--active';
+    } else if (props.adding === true) {
+        activeBarLit = 'contact__activeBar--red';
+        if (props.added) activeBarLit = 'contact__activeBar--green';
+    }
+
+
+    return (
+        <div className={active} onClick={() => {
+            if (props.adding === true) addContact(); else updateCurrentContact();
+        }}>
+            <div className={activeBarLit}/>
             <div
-              className="contactImage--border"
-              id={this.props.contactData.uid}
+                className="contactImage--border"
+                id={props.contactData.uid}
             />
             <div className="contact__text">
-              <h1>{this.props.contactData.name}</h1>
+                <h1>{props.contactData.name}</h1>
             </div>
-          </div>
-        );
-      } else {
-        return (
-          <div className="contact" onClick={this.updateCurrentContact}>
-            <div className="contact__activeBar" />
-            <div
-              className="contactImage--border"
-              id={this.props.contactData.uid}
-            />
-            <div className="contact__text">
-              <h1>{this.props.contactData.name}</h1>
-            </div>
-          </div>
-        );
-      }
-    } else {
-      let activeBar = 'contact__activeBar--red';
-
-      if (this.props.added) activeBar = 'contact__activeBar--green';
-
-      return (
-        <div className="contact" onClick={this.addContact}>
-          <div className={activeBar} />
-          <div
-            className="contactImage--border"
-            id={this.props.contactData.uid}
-          />
-          <div className="contact__text contact__text--name">
-            <h1>{this.props.contactData.name}</h1>
-          </div>
         </div>
-      );
-    }
-  }
+    );
+
+
 }
+
 
 export default Contact;

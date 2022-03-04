@@ -24,7 +24,7 @@ function LoginForm() {
     const [user, setUser] = useState(() => firebase.auth.currentUser);
 
 
-    useEffect(() => {
+    useEffect(() => { //checks to see if user has been logged in
         const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
             if (user) {
                 setUser(user);
@@ -40,18 +40,15 @@ function LoginForm() {
     }, [initializing]);
 
 
-    const signInWithToken = async () => {
+    const signInWithToken = async () => { //signing into firebase with demo credentials
         firebase.auth().signInWithEmailAndPassword('demo@gmail.com', 'demo123')
-            .then((result) => {
-                console.log("success");
-            })
             .catch(function(error) {
                 console.log(error);
             });
     }
 
 
-    const signOut = async () => {
+    const signOut = async () => { //signing out from firebase
         try {
             await firebase.auth().signOut();
         } catch (error) {
@@ -89,18 +86,16 @@ function LoginForm() {
     };
 
 
-    if (user) {
-        //create database to put into context
-        let db = firebase.firestore();
+    if (user) { //user is logged in
+        let db = firebase.firestore(); //create database to put into context
 
-        let contextData = {
+        let contextData = { //context will be used to help pass info between components
             firebase: firebase,
             uid: user._delegate.uid,
             database: db,
         };
 
-        //create a doc reference to users name in database
-        const docRef = doc(db, "users", contextData.uid);
+        const docRef = doc(db, "users", contextData.uid); //create a doc reference to users name in database
 
         async function docSnap() {
             const doc = await getDoc(docRef);

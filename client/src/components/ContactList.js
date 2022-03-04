@@ -2,9 +2,10 @@ import React from "react";
 import Contact from "./Contact";
 import DatabaseContext from "./databaseContext";
 import uniqid from "uniqid";
-import dropDownArrow from "../images/dropdownArrow.svg";
 
+//utility function
 function isMobile() {
+    //certain features need to know if mobile is active
     return window.innerWidth < 1400;
 }
 
@@ -14,19 +15,21 @@ class ContactList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            contacts: [],
+            contacts: [], //the users added contacts
             adding: false,
-            users: null,
+            users: [], //unadded users
             searchValue: null,
-            toggleList: false,
+            toggleList: false, //for mobile
             isMobile: false,
         };
     }
 
     componentDidMount() {
+        //grabs user info and stores it in state
         this.getContacts();
         this.getUsers();
 
+        //for mobile purposes. put this somewhere else?
         if (isMobile()) {
             this.setState({
                 isMobile: true,
@@ -47,10 +50,12 @@ class ContactList extends React.Component {
     }
 
     componentWillUnmount() {
+        //unsubscribe to list of contacts and unadded users
         this.getContactsQuery();
         this.getUsersQuery();
     }
 
+    //next two functions are the same place code elsewhere
     getContacts = () => {
         //grabs all user contacts from database
         let contacts = this.context.database.collection(this.context.uid);
@@ -86,11 +91,18 @@ class ContactList extends React.Component {
     };
 
     setStateAdding = (button) => {
+        //ui and state changes for adding contacts
         button.style.backgroundColor = "#583E79";
         button.style.backgroundColor = "#9430EB";
 
         this.setState({
             adding: !this.state.adding,
+        });
+    };
+
+    toggleList = () => {
+        this.setState({
+            toggleList: !this.state.toggleList,
         });
     };
 
@@ -109,41 +121,41 @@ class ContactList extends React.Component {
         }
 
         return contactsToRender.map((contact) => {
-            if (contact.uid === this.context.uid) return null;
+            if (contact.uid === this.context.uid) return null; //ignore user's info from database
 
             if (this.state.searchValue !== null) {
+                //if searching
                 if (!contact.name.includes(this.state.searchValue)) return null;
             }
 
+            //finds if the user has been added
             const exist = (addedContact) => addedContact.id === contact.id;
             let added = this.state.contacts.some(exist);
 
             return (
                 <Contact
                     key={uniqid()}
-                    adding={this.state.adding}
+                    adding={this.state.adding} //important for ui
                     contactData={contact}
                     currentContact={this.props.currentContact}
-                    toggleList={this.toggleList}
+                    toggleList={this.toggleList} //for mobile dropdown contact list
                     added={added}
                 />
             );
         });
     }
 
-    toggleList = () => {
-        this.setState({
-            toggleList: !this.state.toggleList,
-        });
-    };
-
+    //mobile requires different rendering for dropdown menu (kind of like a navbar)
     renderMobileList = () => {
+        //using data we got earlier in ChatApp.js, we can render a new receiver header. The old one displayed in desktop
+        // view is part of a ChatApp's rendering and that ContactList didn't need a header.
         let contactHeader = this.props.currentContact.currentContactName;
         if (contactHeader === null) contactHeader = "No Contact";
 
-        let contacts = [null];
+        let contacts = [null]; //array of render components
 
         if (this.state.toggleList) {
+            //if the list is toggled
             contacts[0] = (
                 <div
                     className="contact addButtonMobile"
@@ -151,7 +163,7 @@ class ContactList extends React.Component {
                     onClick={() => {
                         this.setState({
                             adding: !this.state.adding,
-                        })
+                        });
                     }}
                 >
                     <div className="contact__activeBar"/>
@@ -167,6 +179,7 @@ class ContactList extends React.Component {
             contacts[1] = this.renderContacts();
         }
 
+        //by the end an all-in-one receiver header, add contact interface, and contact list is rendered
         return (
             <div id="receiver">
                 <div id="receiver__header">
@@ -178,8 +191,6 @@ class ContactList extends React.Component {
     };
 
     render() {
-        let contactList = <div id="contactsList">{this.renderContacts()}</div>;
-
         if (this.props.mobile) {
             return this.renderMobileList();
         }
@@ -209,7 +220,7 @@ class ContactList extends React.Component {
                         Add
                     </button>
                 </div>
-                {contactList}
+                <div id="contactsList">{this.renderContacts()}</div>
             </div>
         );
     }
