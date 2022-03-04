@@ -156,8 +156,8 @@ class ContactList extends React.Component {
             alt="drop down"
             onClick={this.toggleList}
           />
+          <div id="contactsFlex">{contacts}</div>
         </div>
-        <div id="contactsFlex">{contacts}</div>
       </div>
     );
   };
