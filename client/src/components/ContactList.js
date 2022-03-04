@@ -108,7 +108,8 @@ class ContactList extends React.Component {
             ? (contactsToRender = this.state.users)
             : (contactsToRender = this.state.contacts);
 
-        if (this.state.adding === false && this.state.contacts.length === 0) {
+        //if not adding contacts, if contacts are empty, if not on mobile
+        if (this.state.adding === false && this.state.contacts.length === 0 && !isMobile()) {
             return (
                 <div id="contactsList">
                     <p id="noContacts">No Contacts</p>
