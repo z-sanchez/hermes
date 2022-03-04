@@ -2,12 +2,8 @@ import React from "react";
 import Contact from "./Contact";
 import DatabaseContext from "./databaseContext";
 import uniqid from "uniqid";
-
-//utility function
-function isMobile() {
-    //certain features need to know if mobile is active
-    return window.innerWidth < 1400;
-}
+import {getDatabase} from "./serverFunctions";
+import {isMobile} from "./serverFunctions";
 
 class ContactList extends React.Component {
     static contextType = DatabaseContext;
@@ -29,7 +25,7 @@ class ContactList extends React.Component {
         this.getContacts();
         this.getUsers();
 
-        //for mobile purposes. put this somewhere else?
+        //for mobile purposes.
         if (isMobile()) {
             this.setState({
                 isMobile: true,
@@ -58,7 +54,7 @@ class ContactList extends React.Component {
     //next two functions are the same place code elsewhere
     getContacts = () => {
         //grabs all user contacts from database
-        let contacts = this.context.database.collection(this.context.uid);
+        let contacts = getDatabase().collection(this.context.uid);
         this.getContactsQuery = contacts.onSnapshot((querySnapshot) => {
             const data = querySnapshot.docs.map((doc) => ({
                 ...doc.data(),
@@ -75,7 +71,7 @@ class ContactList extends React.Component {
 
     getUsers = () => {
         //grabs all user contacts from database
-        let contacts = this.context.database.collection("users");
+        let contacts = getDatabase().collection("users");
         this.getUsersQuery = contacts.onSnapshot((querySnapshot) => {
             const data = querySnapshot.docs.map((doc) => ({
                 ...doc.data(),

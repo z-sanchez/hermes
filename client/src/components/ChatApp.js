@@ -4,6 +4,7 @@ import ContactList from "./ContactList";
 import DatabaseContext from "./databaseContext";
 import "firebase/compat/auth";
 import "firebase/compat/firestore";
+import {signOut, getFirebase, getAllChatMessages, getConversationID} from "./serverFunctions";
 
 class ChatApp extends React.Component {
     static contextType = DatabaseContext;
@@ -43,14 +44,9 @@ class ChatApp extends React.Component {
     //break into separate file
     //access database and fill messages in state
     updateCurrentContact = (contactUID, contactName) => {
-        const collection = this.context.database.collection(
-            this.getConversationID(contactUID)
-        );
+        const collection = getAllChatMessages(getConversationID(this.context.uid, contactUID));
 
-        const query = this.context.database //query for last 10 messages in desc order (first to recent)
-            .collection(this.getConversationID(contactUID))
-            .orderBy("createdAt", "desc")
-            .limit(10);
+        const query = collection.orderBy("createdAt", "desc").limit(10); //query for last 10 messages in desc order (first to recent)
 
         this.getMessages = query.onSnapshot((querySnapshot) => {
             const data = querySnapshot.docs.map((doc) => ({
@@ -70,8 +66,6 @@ class ChatApp extends React.Component {
     };
 
 
-
-
     handleOnSend = () => {
         if (this.state.currentContact === null) return; //if no contact
         const message = document.getElementById("message").value.trim();
@@ -80,7 +74,7 @@ class ChatApp extends React.Component {
         if (message) {
             query.add({ //function could be elsewhere
                 text: message,
-                createdAt: this.context.firebase.firestore.FieldValue.serverTimestamp(),
+                createdAt: getFirebase().firestore.FieldValue.serverTimestamp(),
                 sentBy: this.context.uid,
             });
         }
@@ -89,24 +83,6 @@ class ChatApp extends React.Component {
     };
 
 
-    getConversationID(contactUID) { //serializing id code algorithm
-        let user1 = false,
-            user2 = false,
-            char = 0,
-            uid1 = this.context.uid,
-            uid2 = contactUID;
-
-        while (user1 === false && user2 === false) {
-            if (uid1[char] === uid2[char]) ++char;
-            else if (uid1[char] > uid2[char]) user1 = true;
-            else user2 = true;
-        }
-
-        return user1 ? uid1.concat(uid2) : uid2.concat(uid1);
-    }
-
-
-//break code into seperate files, better algorithm?
     renderMessages() {
         let lastReceivedIndex = null,
             lastSentIndex = null;
@@ -159,7 +135,7 @@ class ChatApp extends React.Component {
         return (
             <div id="appGrid">
                 <div id="header">
-                    <h1 onClick={this.props.signOut}>HERMES</h1>
+                    <h1 onClick={signOut}>HERMES</h1>
                     <Clock/>
                 </div>
                 <ContactList mobile={false} currentContact={currentContact}/>

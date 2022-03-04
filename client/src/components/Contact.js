@@ -1,11 +1,8 @@
 import React, {useContext} from "react";
 import {useEffect} from 'react';
 import DatabaseContext from "./databaseContext";
-import {doc, getDoc, setDoc} from "firebase/firestore";
-
-function isMobile() { //outsource this
-    return window.innerWidth < 1400;
-}
+import {enterUserToDatabase} from "./serverFunctions";
+import {isMobile} from "./serverFunctions";
 
 const Contact = (props) => {
     const context = useContext(DatabaseContext);
@@ -28,23 +25,8 @@ const Contact = (props) => {
     }
 
     //same process as in LoginFrom.js for entering new user. Move function elsewhere
-    async function addContact() {
-        const collection = doc(
-            context.database,
-            context.uid,
-            props.contactData.uid
-        );
-
-        const document = await getDoc(collection);
-
-        if (!document.exists()) {
-            await setDoc(collection, {
-                name: props.contactData.name,
-                profilePic:
-                    "https://images.pexels.com/photos/2599244/pexels-photo-2599244.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260",
-                uid: props.contactData.uid,
-            });
-        }
+    function addContact() {
+        enterUserToDatabase(context.uid, props.contactData.uid, props.contactData.name);
     }
 
 
