@@ -1,20 +1,24 @@
-# crudTemplate
-template for crud applications
 
-This is meant to be a personal template for CRUD apps so I can hit the ground running. It should have everything set up for 
-prettier, eslint, babel file watcher, node, sass, sql, and express to work in PhpStorm. I'll try to update this as much as I can.
+# HERMES
+A Chat App
 
-To help, some obvious but helpful for learning, comments are scattered about the code.
+ ![Tux, the Linux mascot](/client/src/images/darth.jpg)
 
-Walkthrough for me to get running:
+### live site (https://xenodochial-saha-fcec11.netlify.app/)
 
-1. Pull repository 
-2. npm install inside template, server, and client
- note: sass, prettier, and eslint installed globally according to PhpStorm docs
-3. PhpStorm should fill in blanks as it has a .idea folder for setting reference
-4. Setup XAMMP (current personal preference)
-5. run 
-- CD into client and "npm start"
-- CD into server (with server running) and "npm run devStart"
+# Table of Contents
+1. [What it does](#whatitdoes)
+2. [Tools, API's, and more](#tools)
+3. [Setup](#setup)
+4. [How it works](#howit)
+5. [What I learned](#learned)
 
-should run a react application
+## What it does <a name="whatitdoes"></a>
+
+## Tools, API's, and more <a name="tools"></a>
+
+## Setup <a name="setup"></a>
+
+## How it works <a name="howit"></a>
+
+## What I learned <a name="learned"></a>
