@@ -390,11 +390,6 @@
 }
 
 @media screen and (max-width: 1400px) {
-  body {
-    height: 100vh;
-    width: 100vw;
-  }
-
   #appGrid {
     grid-template-columns: auto;
   }
@@ -405,6 +400,9 @@
     grid-column-start: 1;
     grid-column-end: 3;
     height: 88vh;
+  }
+  #chat #chatWindow {
+    height: 65vh;
   }
   #chat #receiver {
     width: 65%;
@@ -493,14 +491,6 @@
   }
 }
 @media screen and (max-width: 1000px) {
-  body {
-    height: 100vh;
-    width: 100vw;
-  }
-}
-/* ----------- iPhone X ----------- */
-/* Portrait and Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3) {
   body {
     height: 100vh;
     width: 100vw;
