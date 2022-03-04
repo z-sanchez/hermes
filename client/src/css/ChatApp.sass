@@ -252,22 +252,18 @@ $logo-text: arista, "Nunito", sans-serif
 
   #receiver
     @include centerAligned(column)
-    width: 40%
-    height: 10%
+    background-color: $purple-theme-faded
+    border: none
+    border-radius: 18px
+    position: absolute
+    width: 30%
+    height: 5%
+    margin-top: .8%
 
     #receiver__header
-      @include centerAligned(row)
-      background-color: $purple-theme-faded
-      border: none
-      border-radius: 18px
-      padding: 0.8vh 1vw
+      @include centerAligned(column)
       width: 100%
-
-      img
-        width: 5%
-        position: relative
-        display: none
-        margin-left: 2%
+      height: 100%
 
       p
         @include centerAligned(row)
@@ -280,9 +276,9 @@ $logo-text: arista, "Nunito", sans-serif
         color: $white-theme
 
     #contactsFlex
-      display: none
       width: 58%
       overflow-y: scroll
+      height: 0
 
 
     #contactsFlex::-webkit-scrollbar
@@ -297,7 +293,8 @@ $logo-text: arista, "Nunito", sans-serif
     justify-content: flex-start
     align-items: flex-start
     width: 100%
-    height: 72vh
+    height: 71vh
+    margin-top: 7vh
     overflow-y: scroll
 
     .receivedMessage
@@ -367,19 +364,18 @@ $logo-text: arista, "Nunito", sans-serif
     grid-column-end: 3
 
     #receiver
-      width: 65%
+      width: 50%
+      height: auto
       #receiver__header
-        height: 60%
-        padding: 0
         p
-          width: 80%
+          width: 100%
+          padding: 3% 0 3% 0
           font-size: 3.5vw
-        img
-          display: block
-          width: 2vw
 
       #contactsFlex
-        height: 30%
+        width: 100%
+        max-height: 50vh
+        height: auto
 
         .contact:hover
           background-color: $purple-theme-faded
@@ -387,7 +383,7 @@ $logo-text: arista, "Nunito", sans-serif
         .contact
           @include centerAligned(row)
           width: 100%
-          height: 30%
+          height: 8vh
           justify-content: flex-start
           background-color: $background-black-light
 
@@ -441,9 +437,3 @@ $logo-text: arista, "Nunito", sans-serif
 
   #contacts
     display: none
-
-@media screen and (max-width: 1000px)
-  body
-    height: 100vh
-    width: 100vw
-
