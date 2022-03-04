@@ -42,9 +42,13 @@ Others: React
 
 ## Setup <a name="setup"></a>
 If you want to run the project yourself, clone the repository, go into client folder and run 
-<code>npm start</code>
+<code>npm install</code> and then <code>npm start</code>
 
 You'll be greeted to a demo version of the app.
+
+On mobile, click the no contact to choose who to chat with. 
+
+Click logo to sign out.
 
 ## How it works <a name="howit"></a>
 Currently, the code for logging in with a gmail account is taken out. This project is primarily for practice and I don't want your data. Instead, you'll be logged
