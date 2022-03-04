@@ -2,11 +2,8 @@ import React from "react";
 import Contact from "./Contact";
 import DatabaseContext from "./databaseContext";
 import uniqid from "uniqid";
-import dropDownArrow from "../images/dropdownArrow.svg";
-
-function isMobile() {
-    return window.innerWidth < 1400;
-}
+import {getDatabase} from "./serverFunctions";
+import {isMobile} from "./serverFunctions";
 
 class ContactList extends React.Component {
     static contextType = DatabaseContext;
@@ -14,45 +11,50 @@ class ContactList extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            contacts: [],
+            contacts: [], //the users added contacts
             adding: false,
-            users: null,
+            users: [], //unadded users
             searchValue: null,
-            toggleList: false,
+            toggleList: false, //for mobile
             isMobile: false,
         };
     }
 
     componentDidMount() {
+        //grabs user info and stores it in state
         this.getContacts();
         this.getUsers();
 
+        //for mobile purposes.
         if (isMobile()) {
             this.setState({
                 isMobile: true,
-            })
+            });
         }
 
-        window.addEventListener('resize', () => {
-            if (isMobile()) this.setState({
-                isMobile: true,
-            })
+        window.addEventListener("resize", () => {
+            if (isMobile())
+                this.setState({
+                    isMobile: true,
+                });
             else {
                 this.setState({
                     isMobile: false,
-                })
+                });
             }
         });
     }
 
     componentWillUnmount() {
+        //unsubscribe to list of contacts and unadded users
         this.getContactsQuery();
         this.getUsersQuery();
     }
 
+    //next two functions are the same place code elsewhere
     getContacts = () => {
         //grabs all user contacts from database
-        let contacts = this.context.database.collection(this.context.uid);
+        let contacts = getDatabase().collection(this.context.uid);
         this.getContactsQuery = contacts.onSnapshot((querySnapshot) => {
             const data = querySnapshot.docs.map((doc) => ({
                 ...doc.data(),
@@ -69,7 +71,7 @@ class ContactList extends React.Component {
 
     getUsers = () => {
         //grabs all user contacts from database
-        let contacts = this.context.database.collection("users");
+        let contacts = getDatabase().collection("users");
         this.getUsersQuery = contacts.onSnapshot((querySnapshot) => {
             const data = querySnapshot.docs.map((doc) => ({
                 ...doc.data(),
@@ -84,9 +86,19 @@ class ContactList extends React.Component {
         });
     };
 
-    setStateAdding = () => {
+    setStateAdding = (button) => {
+        //ui and state changes for adding contacts
+        button.style.backgroundColor = "#583E79";
+        button.style.backgroundColor = "#9430EB";
+
         this.setState({
             adding: !this.state.adding,
+        });
+    };
+
+    toggleList = () => {
+        this.setState({
+            toggleList: !this.state.toggleList,
         });
     };
 
@@ -105,60 +117,76 @@ class ContactList extends React.Component {
         }
 
         return contactsToRender.map((contact) => {
-            if (contact.uid === this.context.uid) return null;
+            if (contact.uid === this.context.uid) return null; //ignore user's info from database
 
             if (this.state.searchValue !== null) {
+                //if searching
                 if (!contact.name.includes(this.state.searchValue)) return null;
             }
+
+            //finds if the user has been added
+            const exist = (addedContact) => addedContact.id === contact.id;
+            let added = this.state.contacts.some(exist);
 
             return (
                 <Contact
                     key={uniqid()}
-                    adding={this.state.adding}
+                    adding={this.state.adding} //important for ui
                     contactData={contact}
                     currentContact={this.props.currentContact}
-                    toggleList={this.toggleList}
+                    toggleList={this.toggleList} //for mobile dropdown contact list
+                    added={added}
                 />
             );
         });
     }
 
-    toggleList = () => {
-        this.setState({
-            toggleList: !this.state.toggleList,
-        });
-    };
-
+    //mobile requires different rendering for dropdown menu (kind of like a navbar)
     renderMobileList = () => {
+        //using data we got earlier in ChatApp.js, we can render a new receiver header. The old one displayed in desktop
+        // view is part of a ChatApp's rendering and that ContactList didn't need a header.
         let contactHeader = this.props.currentContact.currentContactName;
         if (contactHeader === null) contactHeader = "No Contact";
 
-        let contacts = null;
+        let contacts = [null]; //array of render components
 
-        if (this.state.toggleList) contacts = this.renderContacts();
-        //render this. Edit classes and ids to display none in media queries.
-        // Make proper css adjustments to keep spacing consistent. For contacts change media query to display properly
+        if (this.state.toggleList) {
+            //if the list is toggled
+            contacts[0] = (
+                <div
+                    className="contact addButtonMobile"
+                    key={"123"}
+                    onClick={() => {
+                        this.setState({
+                            adding: !this.state.adding,
+                        });
+                    }}
+                >
+                    <div className="contact__activeBar"/>
+                    <div
+                        className="contactImage--border"
+                        id="UZYNS7h2X7QXHPeTNXV4NQbqqJ32"
+                    />
+                    <div className="contact__text">
+                        <h1>{"Add"}</h1>
+                    </div>
+                </div>
+            );
+            contacts[1] = this.renderContacts();
+        }
+
+        //by the end an all-in-one receiver header, add contact interface, and contact list is rendered
         return (
             <div id="receiver">
                 <div id="receiver__header">
-                    <p>{contactHeader}</p>
-                    <img
-                        src={dropDownArrow}
-                        id="dropDown"
-                        alt="drop down"
-                        onClick={this.toggleList}
-                    />
-                </div>
-                <div id="contactsFlex">
-                    {contacts}
+                    <p onClick={this.toggleList}>{contactHeader}</p>
+                    <div id="contactsFlex">{contacts}</div>
                 </div>
             </div>
         );
     };
 
     render() {
-        let contactList = <div id="contactsList">{this.renderContacts()}</div>;
-
         if (this.props.mobile) {
             return this.renderMobileList();
         }
@@ -169,6 +197,7 @@ class ContactList extends React.Component {
                     <input
                         type="search"
                         id="searchBar"
+                        autoComplete="off"
                         placeholder="Search ..."
                         onChange={(e) => {
                             this.setState({
@@ -180,12 +209,14 @@ class ContactList extends React.Component {
                     <button
                         id="addButton"
                         className="buttons"
-                        onClick={this.setStateAdding}
+                        onClick={(button) => {
+                            this.setStateAdding(button.target);
+                        }}
                     >
                         Add
                     </button>
                 </div>
-                {contactList}
+                <div id="contactsList">{this.renderContacts()}</div>
             </div>
         );
     }

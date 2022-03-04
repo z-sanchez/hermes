@@ -29,6 +29,7 @@ h5 {
 body {
   padding: 0;
   margin: 0;
+  height: 100vh;
 }
 
 #root {
@@ -37,6 +38,11 @@ body {
 }
 
 #loginBackGround {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
   width: 100vw;
   height: 100vh;
   background-image: url("../images/background-dark.svg");
@@ -50,18 +56,21 @@ body {
   align-items: center;
   justify-content: center;
   align-content: center;
-  position: relative;
-  top: 20%;
-  left: 22vw;
+  justify-content: flex-start;
+  align-items: flex-end;
+  overflow-y: hidden;
+  height: 100%;
+  width: 80vw;
 }
 
 #logo {
   padding: 0;
   margin: 0;
   font-family: arista, "Nunito", sans-serif;
-  font-size: 10rem;
+  font-size: 10vw;
   color: #E3E3E3;
-  margin-bottom: 4vh;
+  margin-bottom: 2%;
+  margin-top: 10%;
 }
 
 #loginForm {
@@ -72,11 +81,11 @@ body {
   align-content: center;
   padding: 0;
   margin: 0;
+  margin-right: 5%;
   align-items: flex-start;
   justify-content: space-between;
-  width: 20vw;
-  height: 20vh;
-  padding: 1vh 2.5vw 0 2.5vw;
+  width: 25vw;
+  height: 25%;
   border-radius: 2vh;
   background-color: #33373E;
   box-shadow: 0.3rem 1rem 1.5rem #25272d;
@@ -87,7 +96,8 @@ body {
   margin: 0;
   font-family: osSemibold, "Nunito", sans-serif;
   color: #E3E3E3;
-  font-size: 3rem;
+  font-size: 5vh;
+  padding: 3% 0 0 3%;
 }
 
 #loginForm__signUp {
@@ -97,7 +107,7 @@ body {
   color: #E3E3E3;
   position: relative;
   font-size: 1rem;
-  bottom: 0.3vh;
+  padding: 0 0 0 3%;
 }
 
 a {
@@ -117,15 +127,16 @@ a {
   align-content: center;
   justify-content: center;
   font-size: 1.5rem;
-  width: 25vw;
-  height: 40%;
+  width: 100%;
+  height: 35%;
   align-self: center;
   background: radial-gradient(#9430EB, #b057ff 170%);
   border-style: none;
   border-radius: 0 0 1vh 1vh;
 }
 #loginForm__loginButton img {
-  width: 10%;
+  height: 50%;
+  width: auto;
   margin-right: 1vw;
 }
 #loginForm__loginButton h1 {
@@ -162,11 +173,6 @@ a {
   }
 }
 @media screen and (max-width: 1200px) {
-  body {
-    width: 736px;
-    height: 100vh;
-  }
-
   #logo {
     bottom: 125px;
   }
@@ -179,14 +185,9 @@ a {
     align-content: center;
     position: relative;
     width: 100vw;
-    left: 0;
   }
 }
 @media screen and (max-height: 800px) {
-  .wrapper {
-    width: 809px;
-  }
-
   #logo {
     margin-bottom: 32px;
   }
@@ -201,60 +202,6 @@ a {
 
   .loginForm__field {
     margin-bottom: 16.36px;
-  }
-}
-/* ----------- iPhone X ----------- */
-/* Portrait and Landscape */
-/* Portrait */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) {
-  #root {
-    background-position: 30% 0;
-  }
-
-  body {
-    height: 100vh;
-    width: 100vw;
-  }
-
-  .wrapper {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    position: relative;
-    width: 100vw;
-    left: 0;
-  }
-
-  #logo {
-    font-size: 500%;
-  }
-
-  #loginForm {
-    width: 72%;
-    height: 150px;
-    padding: 1vh 2.5vw 0 2.5vw;
-  }
-
-  #loginForm__title {
-    font-size: 200%;
-  }
-
-  #loginForm__signUp {
-    font-size: 90%;
-    bottom: 6%;
-  }
-
-  #loginForm__loginButton {
-    font-size: 110%;
-    width: 100%;
-    padding: 0 2.5vw 0 2.5vw;
-    height: 40%;
-    align-self: center;
-    background: radial-gradient(#9430EB, #b057ff 170%);
-    border-style: none;
-    border-radius: 0 0 1vh 1vh;
   }
 }
 

@@ -42,6 +42,7 @@ $logo-text: arista, "Nunito", sans-serif
   border-radius: 2.8vh
   max-width: 45%
   margin-bottom: .2vh
+  overflow-wrap: break-word
 
 
 
@@ -79,6 +80,22 @@ $logo-text: arista, "Nunito", sans-serif
     margin-right: 2%
 
 
+.contact
+  .contact__activeBar--red
+    justify-self: flex-start
+    width: 2%
+    margin-right: 3%
+    height: 100%
+    background-color: #FF397D
+    border-radius: 0 1vh 1vh 0
+
+  .contact__activeBar--green
+    justify-self: flex-start
+    width: 2%
+    margin-right: 3%
+    height: 100%
+    background-color: #00A48A
+    border-radius: 0 1vh 1vh 0
 
 
 
@@ -202,7 +219,7 @@ $logo-text: arista, "Nunito", sans-serif
         h1
           @include spaceKiller
           @include fontStyle($white-theme, osSemibold)
-          font-size: 150%
+          font-size: 3vh
 
         p
           @include spaceKiller
@@ -235,23 +252,18 @@ $logo-text: arista, "Nunito", sans-serif
 
   #receiver
     @include centerAligned(column)
-    width: 40%
-    height: 10%
+    background-color: $purple-theme-faded
+    border: none
+    border-radius: 18px
+    position: absolute
+    width: 30%
+    height: 5%
+    margin-top: .8%
 
     #receiver__header
-      @include centerAligned(row)
-      @include centerAligned(row)
-      background-color: $purple-theme-faded
-      border: none
-      border-radius: 18px
-      padding: 0.8vh 1vw
+      @include centerAligned(column)
       width: 100%
-
-      img
-        width: 5%
-        position: relative
-        display: none
-        margin-left: 2%
+      height: 100%
 
       p
         @include centerAligned(row)
@@ -264,11 +276,9 @@ $logo-text: arista, "Nunito", sans-serif
         color: $white-theme
 
     #contactsFlex
-      display: none
-      position: absolute
-      top: 19vh
       width: 58%
       overflow-y: scroll
+      height: 0
 
 
     #contactsFlex::-webkit-scrollbar
@@ -283,7 +293,8 @@ $logo-text: arista, "Nunito", sans-serif
     justify-content: flex-start
     align-items: flex-start
     width: 100%
-    height: 78%
+    height: 71vh
+    margin-top: 7vh
     overflow-y: scroll
 
     .receivedMessage
@@ -338,13 +349,7 @@ $logo-text: arista, "Nunito", sans-serif
 
 
 
-
-
-
 @media screen and (max-width: 1400px)
-  body
-    height: 100vh
-    width: 100vh
 
   #appGrid
     grid-template-columns: auto
@@ -354,24 +359,20 @@ $logo-text: arista, "Nunito", sans-serif
     grid-row-end: 4
     grid-column-start: 1
     grid-column-end: 3
-    height: 88vh
-
 
     #receiver
-      width: 65%
+      width: 50%
+      height: auto
       #receiver__header
-        height: 60%
-        padding: 0
         p
-          width: 80%
-          font-size: 3.5vw
-        img
-          display: block
-          width: 2vw
+          width: 100%
+          padding: 3% 0 3% 0
+          font-size: 2.6vw
 
       #contactsFlex
-        display: block
-        height: 30%
+        width: 100%
+        max-height: 50vh
+        height: auto
 
         .contact:hover
           background-color: $purple-theme-faded
@@ -379,7 +380,7 @@ $logo-text: arista, "Nunito", sans-serif
         .contact
           @include centerAligned(row)
           width: 100%
-          height: 30%
+          height: 8vh
           justify-content: flex-start
           background-color: $background-black-light
 
@@ -389,6 +390,22 @@ $logo-text: arista, "Nunito", sans-serif
             margin-right: 3%
             height: 100%
             background-color: $purple-theme
+            border-radius: 0 1vh 1vh 0
+
+          .contact__activeBar--red
+            justify-self: flex-start
+            width: 2%
+            margin-right: 3%
+            height: 100%
+            background-color: #FF397D
+            border-radius: 0 1vh 1vh 0
+
+          .contact__activeBar--green
+            justify-self: flex-start
+            width: 2%
+            margin-right: 3%
+            height: 100%
+            background-color: #00A48A
             border-radius: 0 1vh 1vh 0
 
           .contact__activeBar
@@ -415,20 +432,5 @@ $logo-text: arista, "Nunito", sans-serif
           background-color: $purple-theme-faded
 
 
-
   #contacts
     display: none
-
-
-@media screen and (max-width: 1000px)
-  body
-    height: 100vh
-    width: 100vw
-
-/* ----------- iPhone X ----------- */
-
-/* Portrait and Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3)
-  body
-    height: 100vh
-    width: 100vw

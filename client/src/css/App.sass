@@ -53,6 +53,7 @@ h5
 
 body
   @include spaceKiller
+  height: 100vh
 
 
 #root
@@ -60,6 +61,7 @@ body
   height: 100vh
 
 #loginBackGround
+  @include centerAligned(row)
   width: 100vw
   height: 100vh
   background-image: url('../images/background-dark.svg')
@@ -68,26 +70,29 @@ body
 
 .wrapper
   @include centerAligned()
-  position: relative
-  top: 20%
-  left: 22vw
+  justify-content: flex-start
+  align-items: flex-end
+  overflow-y: hidden
+  height: 100%
+  width: 80vw
 
 #logo
   @include spaceKiller
   font-family: $logo-text
-  font-size: 10rem
+  font-size: 10vw
   color: $white-theme
-  margin-bottom: 4vh
+  margin-bottom: 2%
+  margin-top: 10%
 
 
 #loginForm
   @include centerAligned($flow: column)
   @include spaceKiller
+  margin-right: 5%
   align-items: flex-start
   justify-content: space-between
-  width: 20vw
-  height: 20vh
-  padding: 1vh 2.5vw 0 2.5vw
+  width: 25vw
+  height: 25%
   border-radius: 2vh
   background-color: $background-black-light
   box-shadow: .3rem 1rem 1.5rem #25272d
@@ -98,7 +103,8 @@ body
 #loginForm__title
   @include spaceKiller
   @include fontStyle($color: $white-theme, $font: osSemibold)
-  font-size: 3rem
+  font-size: 5vh
+  padding: 3% 0 0 3%
 
 
 #loginForm__signUp
@@ -106,7 +112,7 @@ body
   @include fontStyle($color: $white-theme, $font: osRegular)
   position: relative
   font-size: 1rem
-  bottom: .3vh
+  padding: 0 0 0 3%
 
 
 
@@ -121,15 +127,16 @@ a
   @include centerAligned($flow: row)
   justify-content: center
   font-size: 1.5rem
-  width: 25vw
-  height: 40%
+  width: 100%
+  height: 35%
   align-self: center
   background: radial-gradient($purple-theme, #b057ff 170%)
   border-style: none
   border-radius: 0 0 1vh 1vh
 
   img
-    width: 10%
+    height: 50%
+    width: auto
     margin-right: 1vw
 
   h1
@@ -140,11 +147,6 @@ a
 
 #loginForm__loginButton:hover
   background: $purple-theme
-
-
-
-
-
 
 
 
@@ -170,11 +172,7 @@ a
 
 
 
-
 @media screen and (max-width: 1200px)
-  body
-    width: 736px
-    height: 100vh
 
   #logo
     bottom: 125px
@@ -184,12 +182,9 @@ a
     @include centerAligned()
     position: relative
     width: 100vw
-    left: 0
+
 
 @media screen and (max-height: 800px)
-  .wrapper
-    width: 809px
-
 
   #logo
     margin-bottom: 32px
@@ -202,60 +197,4 @@ a
   .loginForm__field
     margin-bottom: 16.36px
 
-
-
-
-
-
-
-
-
-/* ----------- iPhone X ----------- */
-
-/* Portrait and Landscape */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px) and (-webkit-min-device-pixel-ratio: 3)
-
-
-
-/* Portrait */
-@media only screen and (min-device-width: 375px) and (max-device-width: 812px)
-  #root
-    background-position: 30% 0
-
-
-  body
-    height: 100vh
-    width: 100vw
-
-  .wrapper
-    @include centerAligned()
-    position: relative
-    width: 100vw
-    left: 0
-
-  #logo
-    font-size: 500%
-
-  #loginForm
-    width: 72%
-    height: 150px
-    padding: 1vh 2.5vw 0 2.5vw
-
-  #loginForm__title
-    font-size: 200%
-
-
-  #loginForm__signUp
-    font-size: 90%
-    bottom: 6%
-
-  #loginForm__loginButton
-    font-size: 110%
-    width: 100%
-    padding: 0 2.5vw 0 2.5vw
-    height: 40%
-    align-self: center
-    background: radial-gradient($purple-theme, #b057ff 170%)
-    border-style: none
-    border-radius: 0 0 1vh 1vh
 
