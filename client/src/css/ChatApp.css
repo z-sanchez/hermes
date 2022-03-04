@@ -51,6 +51,23 @@
   margin-right: 2%;
 }
 
+.contact .contact__activeBar--red {
+  justify-self: flex-start;
+  width: 2%;
+  margin-right: 3%;
+  height: 100%;
+  background-color: #FF397D;
+  border-radius: 0 1vh 1vh 0;
+}
+.contact .contact__activeBar--green {
+  justify-self: flex-start;
+  width: 2%;
+  margin-right: 3%;
+  height: 100%;
+  background-color: #00A48A;
+  border-radius: 0 1vh 1vh 0;
+}
+
 .buttons {
   background-color: #583E79;
   border: none;
@@ -188,7 +205,7 @@
   margin: 0;
   font-family: osSemibold, "Nunito", sans-serif;
   color: #E3E3E3;
-  font-size: 150%;
+  font-size: 3vh;
 }
 #contacts #contactsList .contact .contact__text p {
   padding: 0;
@@ -471,23 +488,6 @@
     display: none;
   }
 }
-.contact .contact__activeBar--red {
-  justify-self: flex-start;
-  width: 2%;
-  margin-right: 3%;
-  height: 100%;
-  background-color: #FF397D;
-  border-radius: 0 1vh 1vh 0;
-}
-.contact .contact__activeBar--green {
-  justify-self: flex-start;
-  width: 2%;
-  margin-right: 3%;
-  height: 100%;
-  background-color: #00A48A;
-  border-radius: 0 1vh 1vh 0;
-}
-
 @media screen and (max-width: 1000px) {
   body {
     height: 100vh;

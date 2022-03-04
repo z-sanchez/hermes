@@ -79,6 +79,22 @@ $logo-text: arista, "Nunito", sans-serif
     margin-right: 2%
 
 
+.contact
+  .contact__activeBar--red
+    justify-self: flex-start
+    width: 2%
+    margin-right: 3%
+    height: 100%
+    background-color: #FF397D
+    border-radius: 0 1vh 1vh 0
+
+  .contact__activeBar--green
+    justify-self: flex-start
+    width: 2%
+    margin-right: 3%
+    height: 100%
+    background-color: #00A48A
+    border-radius: 0 1vh 1vh 0
 
 
 
@@ -202,7 +218,7 @@ $logo-text: arista, "Nunito", sans-serif
         h1
           @include spaceKiller
           @include fontStyle($white-theme, osSemibold)
-          font-size: 150%
+          font-size: 3vh
 
         p
           @include spaceKiller
@@ -434,23 +450,6 @@ $logo-text: arista, "Nunito", sans-serif
 
   #contacts
     display: none
-
-.contact
-  .contact__activeBar--red
-    justify-self: flex-start
-    width: 2%
-    margin-right: 3%
-    height: 100%
-    background-color: #FF397D
-    border-radius: 0 1vh 1vh 0
-
-  .contact__activeBar--green
-    justify-self: flex-start
-    width: 2%
-    margin-right: 3%
-    height: 100%
-    background-color: #00A48A
-    border-radius: 0 1vh 1vh 0
 
 @media screen and (max-width: 1000px)
   body
