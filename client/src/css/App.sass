@@ -67,14 +67,16 @@ body
   background-image: url('../images/background-dark.svg')
   background-size: cover
   background-repeat: no-repeat
+  justify-content: flex-end
 
 .wrapper
   @include centerAligned()
-  justify-content: flex-start
-  align-items: flex-end
+  margin-right: 8%
+  justify-content: center
+  align-items: center
   overflow-y: hidden
   height: 100%
-  width: 80vw
+  width: 40%
 
 #logo
   @include spaceKiller
@@ -82,13 +84,11 @@ body
   font-size: 10vw
   color: $white-theme
   margin-bottom: 2%
-  margin-top: 10%
 
 
 #loginForm
   @include centerAligned($flow: column)
   @include spaceKiller
-  margin-right: 5%
   align-items: flex-start
   justify-content: space-between
   width: 25vw
