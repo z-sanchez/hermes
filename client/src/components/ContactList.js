@@ -88,8 +88,8 @@ class ContactList extends React.Component {
 
     setStateAdding = (button) => {
         //ui and state changes for adding contacts
-        button.style.backgroundColor = "#583E79";
-        button.style.backgroundColor = "#9430EB";
+        if (this.state.adding) button.style.backgroundColor = "#583E79";
+        else button.style.backgroundColor = "#9430EB";
 
         this.setState({
             adding: !this.state.adding,
