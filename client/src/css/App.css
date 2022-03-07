@@ -48,6 +48,7 @@ body {
   background-image: url("../images/background-dark.svg");
   background-size: cover;
   background-repeat: no-repeat;
+  justify-content: flex-end;
 }
 
 .wrapper {
@@ -56,11 +57,11 @@ body {
   align-items: center;
   justify-content: center;
   align-content: center;
+  margin-right: 5%;
   justify-content: flex-start;
-  align-items: flex-end;
   overflow-y: hidden;
   height: 100%;
-  width: 80vw;
+  width: 40%;
 }
 
 #logo {
@@ -70,7 +71,7 @@ body {
   font-size: 10vw;
   color: #E3E3E3;
   margin-bottom: 2%;
-  margin-top: 10%;
+  margin-top: 20%;
 }
 
 #loginForm {
@@ -81,10 +82,9 @@ body {
   align-content: center;
   padding: 0;
   margin: 0;
-  margin-right: 5%;
   align-items: flex-start;
   justify-content: space-between;
-  width: 25vw;
+  width: 70%;
   height: 25%;
   border-radius: 2vh;
   background-color: #33373E;
@@ -150,58 +150,22 @@ a {
   background: #9430EB;
 }
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1300px) {
   #logo {
-    position: relative;
-    bottom: 15vh;
-  }
-
-  #loginForm {
-    position: relative;
-    bottom: 10vh;
-    width: 368px;
-    height: 200px;
-    padding: 10px 25px 0 25px;
-  }
-
-  #loginForm__loginButton {
-    width: 418px;
-  }
-
-  .body {
-    left: 0;
-  }
-}
-@media screen and (max-width: 1200px) {
-  #logo {
-    bottom: 125px;
+    margin-top: 35%;
   }
 
   .wrapper {
-    display: flex;
-    flex-flow: column;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    position: relative;
-    width: 100vw;
+    width: 520px;
   }
 }
-@media screen and (max-height: 800px) {
-  #logo {
-    margin-bottom: 32px;
+@media screen and (max-width: 1000px) {
+  #loginBackGround {
+    justify-content: center;
   }
 
-  #loginForm {
-    bottom: 100px;
-  }
-
-  #loginForm__signUp {
-    margin-bottom: 16.36px;
-  }
-
-  .loginForm__field {
-    margin-bottom: 16.36px;
+  .wrapper {
+    margin-right: 0;
   }
 }
 
