@@ -76,6 +76,8 @@ Function component that renders contacts.
 
 
 ## What's to come <a name="whattocome"></a>
+- getting rid of mobile dependent functions. These are nasty for the code. I can just
+handle issues with plain css
 - code refactoring
 - better css styling
-- deleting contacts
+- deleting contacts, messages
