@@ -51,8 +51,7 @@ On mobile, click the no contact to choose who to chat with.
 Click logo to sign out.
 
 ## How it works <a name="howit"></a>
-Currently, the code for logging in with a gmail account is taken out. This project is primarily for practice and I don't want your data. Instead, you'll be logged
-into a demo user with dummy credentials. Hit the logo to sign out!
+Login with google.
 
 *The ChatApp* component is the main parent of all data and also displays messages. When mounted it grabs messages, sets a current contact, and grabs messages from the chat
 between user and that contact. The default is no contact selected.
