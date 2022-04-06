@@ -5,10 +5,9 @@ import "firebase/compat/auth";
 import googleLogo from "../images/googleLogo.svg";
 import {
     startApp,
-    signInWithEmail,
     getUser,
     seeAuthState,
-    enterUserToDatabase
+    enterUserToDatabase, signInWithGoogle
 } from "./serverFunctions";
 
 startApp();
@@ -34,8 +33,6 @@ function LoginForm() {
     }, [initializing]);
 
 
-
-
     const getLogin = () => {
         return (
             <div id="loginBackGround">
@@ -53,7 +50,7 @@ function LoginForm() {
                                 Sign Up
                             </a>
                         </p>
-                        <div id="loginForm__loginButton" onClick={signInWithEmail}>
+                        <div id="loginForm__loginButton" onClick={signInWithGoogle}>
                             <img src={googleLogo} alt="googleLogo"/>
                             <h1>Sign in with Google</h1>
                         </div>
@@ -74,7 +71,7 @@ function LoginForm() {
 
         return (
             <DatabaseContext.Provider value={contextData}>
-                <ChatApp />
+                <ChatApp/>
             </DatabaseContext.Provider>
         );
     } else {

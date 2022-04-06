@@ -23,13 +23,20 @@ export function seeAuthState() {
     return firebase.auth();
 }
 
-//signing into firebase with demo credentials
-export async function signInWithEmail() {
-    firebase.auth().signInWithEmailAndPassword('demo@gmail.com', 'demo123')
-        .catch(function (error) {
-            console.log(error);
-        });
+
+export async function signInWithGoogle() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+
+    firebase.auth().useDeviceLanguage();
+
+    try {
+        await firebase.auth().signInWithPopup(provider);
+    } catch (error) {
+        console.log(error.message);
+    }
 }
+
+
 
 export async function signOut() {
     try {
